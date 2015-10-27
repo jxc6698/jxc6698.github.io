@@ -1,0 +1,897 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Jcx&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="jxc">
+    
+
+    
+    <meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Jcx's Blog">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="Jcx's Blog">
+<meta property="og:description">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Jcx's Blog">
+<meta name="twitter:description">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Jcx&#39;s Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Jcx&#39;s Blog" title="Jcx&#39;s Blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Jcx&#39;s Blog">Jcx&#39;s Blog</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main">
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/10/27/go-reflect/" title="" itemprop="url"></a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="jxc" target="_blank" itemprop="author">jxc</a>
+		
+  <p class="article-time">
+    <time datetime="2015-10-27T11:25:16.000Z" itemprop="datePublished"> 發表於 2015-10-27</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>title: golang reflect<br>date: 2015-10-27 16:54:40</p>
+<h2 id="tags:_[hello]">tags: [hello]</h2><p>关于golang 的reflect 和 structTag</p><br><p></p>
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"># 例子</span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"reflect"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() &#123;</span><br><span class="line">	<span class="keyword">type</span> S <span class="keyword">struct</span> &#123;</span><br><span class="line">		F <span class="typename">string</span> <span class="string">`species:"gopher" color:"blue"`</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	s := S&#123;&#125;</span><br><span class="line">	st := reflect.TypeOf(s)</span><br><span class="line">	field := st.Field(<span class="number">0</span>)</span><br><span class="line">	fmt.Println(field.Tag.Get(<span class="string">"color"</span>), field.Tag.Get(<span class="string">"species"</span>))</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2015/10/27/go-reflect/#more">Read More</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/10/27/安全名词/" title="" itemprop="url"></a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="jxc" target="_blank" itemprop="author">jxc</a>
+		
+  <p class="article-time">
+    <time datetime="2015-10-27T11:21:36.000Z" itemprop="datePublished"> 發表於 2015-10-27</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <div class="container-fiuld"><br><p>payload 有效载荷</p><br><p>PoC ExP</p><br><div><span>XSS</span><br><p>XSS</p><br><ul><br><li>存储型</li><br><li>反射型</li><br><li>Dom型</li><br></ul><br></div><br><div><a href="https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet" target="_blank" rel="external">OWASP</a></div>
+
+
+<div>
+</div></div>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/10/27/python-module/" title="python module" itemprop="url">python module</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="jxc" target="_blank" itemprop="author">jxc</a>
+		
+  <p class="article-time">
+    <time datetime="2015-10-27T11:21:36.000Z" itemprop="datePublished"> 發表於 2015-10-27</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <div class="container-fluid"><br><p>impacket <a href="https://github.com/coresecurity/impacket" target="_blank" rel="external">github</a></p><br><p> 命令行基本工具 net-tool , tcpdump, nmap </p><br><br><p>netstat, ss, traceroute, logging </p><br><br><p>python module: nfqueue(netfilterqueue)</p><p><br><br></p><p>libnfnetlink, netfilter_queue</p><br><br></div>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/10/27/hello-world/" title="Hello World" itemprop="url">Hello World</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="jxc" target="_blank" itemprop="author">jxc</a>
+		
+  <p class="article-time">
+    <time datetime="2015-10-27T10:22:10.000Z" itemprop="datePublished"> 發表於 2015-10-27</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/10/27/chromium-code/" title="chromium 代码" itemprop="url">chromium 代码</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="jxc" target="_blank" itemprop="author">jxc</a>
+		
+  <p class="article-time">
+    <time datetime="2015-10-27T08:54:40.000Z" itemprop="datePublished"> 發表於 2015-10-27</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2></h2>
+
+<div class="panel"><br>    <table class="table"><br>      <caption>namespace and function</caption><br>      <thead><br>        <tr><br>          <th>name</th><br>          <th>position</th><br>          <th>function</th><br>        </tr><br>      </thead><br>      <tbody><br>        <tr><br>          <th scope="row">chrome</th><br>          <td>chrome/browser/ui/browser_commands.cc</td><br>          <td></td><br>        </tr><br>        <tr><br>          <th scope="row">content</th><br>          <td>???</td><br>          <td>Thornton</td><br>        </tr><br>        <tr><br>          <th scope="row">net</th><br>          <td>net/</td><br>          <td>url_request 是关于http(s)的结构</td><br>        </tr><br>        <tr><br>          <th scope="row">prerender</th><br>          <td>chrome/browser/prerender</td><br>          <td>prerender的预先加载</td><br>        </tr><br>      </tbody><br>    </table><br><br>    <table class="table"><br>      <caption>class and it’s function</caption><br>      <thead><br>        <tr><br>          <th>name</th><br>          <th>position</th><br>          <th>function</th><br>        </tr><br>      </thead><br>      <tbody><br>        <tr><br>          <th scope="row">CookieMonster</th><br>          <td>net/cookies/cookie_monster.[cc|h]</td><br>          <td></td><br>        </tr><br>      </tbody><br>    </table><br><!-- class --><br>    <table class="table"><br>      <caption>class and function</caption><br>      <thead><br>        <tr><br>          <th>name</th><br>          <th>position</th><br>          <th>function</th><br>        </tr><br>      </thead><br>      <tbody><br>        <tr><br>          <th scope="row">browser</th><br>          <td>chrome/browser/ui/browser.h</td><br>          <td>virtual class as base class</td><br>        </tr><br>        <tr><br>            <th scope="row">WebContents</th><br>            <td>content/public/browser/web_contents.h</td><br>            <td>virtual class as base class</td><br>        </tr><br>      </tbody><br>    </table><br><br>    <table class="table"><br>      <caption>class and it’s function</caption><br>      <thead><br>        <tr><br>          <th>name</th><br>          <th>position</th><br>          <th>function</th><br>        </tr><br>      </thead><br>      <tbody><br>        <tr><br>          <th scope="row">CookieMonster</th><br>          <td>net/cookies/cookie_monster.[cc|h]</td><br>          <td></td><br>        </tr><br>      </tbody><br>    </table><br><br>    <div class="col-sm-12"><br><br>    <p>    chrome main class and namespace is in ./chrome/brower/ui/brower.h    </p><br>    <p>OpenEmpty<br>    </p><p>从OpenURL() 开始=&gt; chrome::Navigate() =&gt; chrome::LoadURLInContents() =&gt; content:: LoadURLWithParams() =&gt; LoadEntry() =&gt; class NavigationControllerDelegate<br>    </p><br>    <p>相关的文件有</p><br>    <p><br>    chrome/browser/ui/browser_navigator.cc(h)<br>    </p><br>    <p><br>    content/browser/Web_Contents<br>    </p><br>    <p><br>    content/browser/frame_host/navigation_controller_impl.cc(h)<br>    </p><br><br>    <div class="col-sm-12"><br>        chrome<br>    </div><br>    </div><br></div>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/hello/">hello</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/10/27/web-security/" title="web security" itemprop="url">web security</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="jxc" target="_blank" itemprop="author">jxc</a>
+		
+  <p class="article-time">
+    <time datetime="2015-10-27T08:54:40.000Z" itemprop="datePublished"> 發表於 2015-10-27</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p></p><h2>web </h2><p></p>
+<div class="panel"><br>    <h2> xss </h2><br>    <p><a href="https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet" target="_blank" rel="external">https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet</a></p><br>    <p> &amp; –&gt; &amp;</p><br>     <p> &lt; –&gt; &lt; </p><br>     <p> &gt; –&gt; &gt; </p><br>     <p> “ –&gt; &quot; </p><br>    <p> ‘ –&gt; &#x27;     &apos; not recommended because its not in the HTML spec (See: section 24.4.1) &apos; is in the XML and XHTML specs. </p><br>     <p> / –&gt; &#x2F; </p><br><br>    <div class="row"><br>        <div class="header"> rule #2:</div><br>        <div class="content"><br>            <h2> Escape in attribute </h2><br>            <p> including [space] % * + , - / ; &lt; = &gt; ^ and |. </p><br>        </div><br>    </div>
+
+<pre><code>&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"row"</span>&gt;
+    &lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"header"</span>&gt; rule <span class="comment">#3:&lt;/div&gt;</span>
+    &lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"content"</span>&gt;
+        &lt;h2&gt; Javascript Escape &lt;/h2&gt;
+        &lt;p&gt; including [<span class="constant">space</span>] % * + , - / ; &lt; = &gt; ^ <span class="keyword">and</span> |. &lt;/p&gt;
+    &lt;/<span class="keyword">div</span>&gt;
+&lt;/<span class="keyword">div</span>&gt;
+
+&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"row"</span>&gt;
+    &lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"header"</span>&gt; rule <span class="comment">#4:&lt;/div&gt;</span>
+    &lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"content"</span>&gt;
+        &lt;h2&gt; Escape <span class="keyword">in</span> attribute &lt;/h2&gt;
+        &lt;p&gt; including [<span class="constant">space</span>] % * + , - / ; &lt; = &gt; ^ <span class="keyword">and</span> |. &lt;/p&gt;
+    &lt;/<span class="keyword">div</span>&gt;
+&lt;/<span class="keyword">div</span>&gt;
+</code></pre><div>
+</div></div>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/hello/">hello</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/10/27/hello-world-1/" title="hello world" itemprop="url">hello world</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="jxc" target="_blank" itemprop="author">jxc</a>
+		
+  <p class="article-time">
+    <time datetime="2015-10-27T08:54:40.000Z" itemprop="datePublished"> 發表於 2015-10-27</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>This is my first blog.<br>不太明白hexo 的markdown是谁来配置和渲染的<br>Markdown语法</p>
+<p>1、分段： 两个回车</p>
+<p>2、换行 两个空格 + 回车</p>
+<p>3、标题 #~###### 井号的个数表示几级标题，即Markdown可以表示一级标题到六级标题</p>
+<p>4、引用 &gt;</p>
+<p>5、列表 *，+，-，1.，选其中之一，注意后面有个空格</p>
+<p>6、代码区块 四个空格开头</p>
+<p>7、链接 <a href="链接地址">文字</a></p>
+<p>8、图片 <img src="图片地址" alt="图片说明">，图片地址可以是本地路劲，也可以是网络地址</p>
+<p>9、强调 <strong>文字</strong>，<strong>文字</strong>，<em>文字</em>，<em>文字</em></p>
+<p>10、代码 <code>`，</code></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/hello/">hello</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/10/27/ctf/" title="CTF" itemprop="url">CTF</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="jxc" target="_blank" itemprop="author">jxc</a>
+		
+  <p class="article-time">
+    <time datetime="2015-10-27T08:54:40.000Z" itemprop="datePublished"> 發表於 2015-10-27</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p><a href="https://github.com/delimitry?tab=repositories" target="_blank" rel="external">https://github.com/delimitry?tab=repositories</a></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/hello/">hello</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/10/27/python-argparse/" title="python argparse 模块" itemprop="url">python argparse 模块</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="jxc" target="_blank" itemprop="author">jxc</a>
+		
+  <p class="article-time">
+    <time datetime="2015-10-27T08:54:40.000Z" itemprop="datePublished"> 發表於 2015-10-27</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <div><br><br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import argparse</span><br><span class="line">parse = argparse.<span class="function"><span class="title">ArgumentParser</span><span class="params">()</span></span></span><br><span class="line">parse.<span class="function"><span class="title">add_argument</span><span class="params">(<span class="string">"a"</span>, help=<span class="string">"params means"</span>)</span></span></span><br><span class="line">parse.<span class="function"><span class="title">add_argument</span><span class="params">(<span class="string">"-C"</span>, <span class="string">"--gc"</span>, default=<span class="string">"count"</span>)</span></span></span><br><span class="line">parse.<span class="function"><span class="title">add_argument</span><span class="params">(<span class="string">"--ga"</span>, help=<span class="string">"params means ga"</span>, dest=<span class="string">"simple_value"</span>, choices=[<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>, <span class="string">'D'</span>])</span></span></span><br><span class="line">parse.<span class="function"><span class="title">add_argument</span><span class="params">(<span class="string">"--gb"</span>, help=<span class="string">"params means gd"</span>, action=<span class="string">"store_const"</span>, const=<span class="string">'value-to-store'</span>)</span></span></span><br><span class="line"></span><br><span class="line">args = parse.<span class="function"><span class="title">parse_args</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure><br><br><div><br><p>add_argument(“-shortname”, “–name”, help=”params means”)</p><p><br></p><p>dest:参数在程序中的变量名</p><br><p>default:参数的默认值</p><br><p>help:参数的解释作用</p><br><p>type:默认string， add_argument(“c”, type-int)</p><br><p>action: store存储到指定变量</p><br><p>store_const:存储在参数的const部分指定</p><br><p>store_true:布尔开关</p><br><p>append:存储值到列表</p><br><p>append_const:存储值到列表，存储在参数的const部分指定</p><br><p>count:统计参数简写输入的个数 add_argument(“-c”, “–gc”, action=”count”)</p><br><p>version:输出版本信息，退出</p><br><p>const:配合action=”store_counst|append_const”使用， required: 默认是False，若为True，标识必须输入该参数，choices输入值的范围</p><br><br><br><br><br></div>
+
+<p></p></div><p></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/hello/">hello</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/10/27/mongodb-grammer/" title="mongodb grammer" itemprop="url">mongodb grammer</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="jxc" target="_blank" itemprop="author">jxc</a>
+		
+  <p class="article-time">
+    <time datetime="2015-10-27T08:54:40.000Z" itemprop="datePublished"> 發表於 2015-10-27</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2></h2>
+
+<p>mongodb 的环境是ubuntu 14.04，下载好ubuntu 后，直接运行mongod -f configfilepath</p><br><p>客户端端口默认是27017, 可以用db.getMongo</p>
+
+<p>mongodb 支持的结构是BSON，2进制存储，据说是比JSON多出了date类型和类型</p><br><p>document =&gt; collection =&gt; database</p>
+
+<p></p><h3>命令和例子</h3><p></p>
+<p>show collections</p><br><p>db.collection.find()</p><br><p>db.collection.insert()</p><br><p>db.collection.update(query,update,{upsert:boolean,multi:boolean})</p><br><p>db.person.update({age: {$lt: 30}}, {$set: {status:”X”}}, {multi:true});</p><br><p>save命令可以更新或插入一个新文档，与update命令不同的是，save只能对一个文档进行操作。</p><br><p>大于($gt)、大于等于($gte)、小于($lt)、小于等于($lte)、不等于($ne)、包含于($in)、不包含于($nin)</p><br><p>db.persion.insert({name:”jxc”, age:11});</p><br><p>db.collection.remove(query,justOne) </p><br><p>query 是一个BSON结构</p>
+
+<p>数组条件: </p><br><p>数组完全匹配：<br><br>db.inventory.find( { tags: [ ‘fruit’, ‘food’, ‘citrus’ ] } );<br>单个元素匹配：<br><br>db.inventory.find( { tags: ‘fruit’ } );<br>特定元素匹配:<br><br>db.inventory.find( { ‘tags.0’ : ‘fruit’ } );<br></p><br><p>子文档匹配，类似数组的特定元素匹配</p>
+
+<p>复合查询</p><br><p>db.inventory.find({$and:[{type: “food”},{ price: { $lt: 95 }}]});</p><br><p>db.person.find({$or:[{status:”A”}, {age: 40}]});</p>
+
+<p>游标</p><br><p>find命令并不直接返回结果，而是返回一个结果集的迭代器，即游标。</p>
+
+<p> highlight ruby<br>/<em> 方法一 </em>/<br>var myCursor = db.inventory.find( { type: “food” } );<br>var myDocument = myCursor.hasNext() ? myCursor.next() : null;</p>
+<p> if (myDocument) {<br>         var myItem = myDocument.item;<br>             print(tojson(myItem));<br> }<br>/<em> 方法二 </em>/<br>var myCursor =  db.inventory.find( { type: “food” } );<br>myCursor.forEach(printjson);<br> endhighlight </p>
+<p>数量限制</p><br><p>db.person.find().limit(3)</p>
+
+<p>限制集</p><br><p>db.collection.find( 查询条件,子段条件 )</p><br><p>字段条件：JSON对象，格式=&gt;{字段：值},值等于1时表示需要返回,0时表示不需要</p><br><p>返回person的”status”和”age”字段: db.person.find({}, {status:1,age:1})</p>
+
+
+
+
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/hello/">hello</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+
+  <nav id="page-nav" class="clearfix">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
+  </nav>
+
+</div>
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">標簽</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/hello/" title="hello">hello<sup>10</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情鏈接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=b3593ceb&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="jxc">jxc</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fe6d1f421bbc9962127a50488f9ed37d1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+ </html>
