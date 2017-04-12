@@ -11,15 +11,12 @@
     
 
     
-    <meta name="description">
-<meta property="og:type" content="website">
+    <meta property="og:type" content="website">
 <meta property="og:title" content="Jcx's Blog">
 <meta property="og:url" content="http://yoursite.com/page/2/index.html">
 <meta property="og:site_name" content="Jcx's Blog">
-<meta property="og:description">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Jcx's Blog">
-<meta name="twitter:description">
 
     
     <link rel="alternative" href="/atom.xml" title="Jcx&#39;s Blog" type="application/atom+xml">
@@ -31,7 +28,7 @@
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
   <body>
@@ -47,7 +44,7 @@
 				<h1 class="site-name"><a href="/" title="Jcx&#39;s Blog">Jcx&#39;s Blog</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -63,7 +60,7 @@
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
 						<input type="hidden" name="q" value="site:yoursite.com">
 					</form>
 					
@@ -81,24 +78,43 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/10/27/ajax/" title="ajax" itemprop="url">ajax</a>
+      <a href="/2015/10/27/mongodb-grammer/" title="mongodb grammer" itemprop="url">mongodb grammer</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="jxc" target="_blank" itemprop="author">jxc</a>
 		
   <p class="article-time">
-    <time datetime="2015-10-27T08:54:40.000Z" itemprop="datePublished"> 發表於 2015-10-27</time>
+    <time datetime="2015-10-27T08:54:40.000Z" itemprop="datePublished"> Published 2015-10-27</time>
     
   </p>
 </header>
     <div class="article-content">
         
-        
-<h2>关于ajax</h2>
-<p>最近在用dropzone和jquery-File-Uploader这连个插件，需要异步发送文件，为了确保使用正确，顺道看了下这两个插件的代码</p>
+        <h2></h2>
 
-<h2>关于jQuery.ajax的使用和参数</h2>
+<p>mongodb 的环境是ubuntu 14.04，下载好ubuntu 后，直接运行mongod -f configfilepath</p><br><p>客户端端口默认是27017, 可以用db.getMongo</p>
+
+<p>mongodb 支持的结构是BSON，2进制存储，据说是比JSON多出了date类型和类型</p><br><p>document =&gt; collection =&gt; database</p>
+
+<p></p><h3>命令和例子</h3><p></p>
+<p>show collections</p><br><p>db.collection.find()</p><br><p>db.collection.insert()</p><br><p>db.collection.update(query,update,{upsert:boolean,multi:boolean})</p><br><p>db.person.update({age: {$lt: 30}}, {$set: {status:”X”}}, {multi:true});</p><br><p>save命令可以更新或插入一个新文档，与update命令不同的是，save只能对一个文档进行操作。</p><br><p>大于($gt)、大于等于($gte)、小于($lt)、小于等于($lte)、不等于($ne)、包含于($in)、不包含于($nin)</p><br><p>db.persion.insert({name:”jxc”, age:11});</p><br><p>db.collection.remove(query,justOne) </p><br><p>query 是一个BSON结构</p>
+
+<p>数组条件: </p><br><p>数组完全匹配：<br><br>db.inventory.find( { tags: [ ‘fruit’, ‘food’, ‘citrus’ ] } );<br>单个元素匹配：<br><br>db.inventory.find( { tags: ‘fruit’ } );<br>特定元素匹配:<br><br>db.inventory.find( { ‘tags.0’ : ‘fruit’ } );<br></p><br><p>子文档匹配，类似数组的特定元素匹配</p>
+
+<p>复合查询</p><br><p>db.inventory.find({$and:[{type: “food”},{ price: { $lt: 95 }}]});</p><br><p>db.person.find({$or:[{status:”A”}, {age: 40}]});</p>
+
+<p>游标</p><br><p>find命令并不直接返回结果，而是返回一个结果集的迭代器，即游标。</p>
+
+<p> highlight ruby<br>/<em> 方法一 </em>/<br>var myCursor = db.inventory.find( { type: “food” } );<br>var myDocument = myCursor.hasNext() ? myCursor.next() : null;</p>
+<p> if (myDocument) {<br>         var myItem = myDocument.item;<br>             print(tojson(myItem));<br> }<br>/<em> 方法二 </em>/<br>var myCursor =  db.inventory.find( { type: “food” } );<br>myCursor.forEach(printjson);<br> endhighlight </p>
+<p>数量限制</p><br><p>db.person.find().limit(3)</p>
+
+<p>限制集</p><br><p>db.collection.find( 查询条件,子段条件 )</p><br><p>字段条件：JSON对象，格式=&gt;{字段：值},值等于1时表示需要返回,0时表示不需要</p><br><p>返回person的”status”和”age”字段: db.person.find({}, {status:1,age:1})</p>
+
+
+
+
 
         
         
@@ -147,7 +163,7 @@
 		<a href="/about" title="jxc" target="_blank" itemprop="author">jxc</a>
 		
   <p class="article-time">
-    <time datetime="2015-10-27T08:54:40.000Z" itemprop="datePublished"> 發表於 2015-10-27</time>
+    <time datetime="2015-10-27T08:54:40.000Z" itemprop="datePublished"> Published 2015-10-27</time>
     
   </p>
 </header>
@@ -211,7 +227,7 @@
 		<a href="/about" title="jxc" target="_blank" itemprop="author">jxc</a>
 		
   <p class="article-time">
-    <time datetime="2015-10-27T08:54:40.000Z" itemprop="datePublished"> 發表於 2015-10-27</time>
+    <time datetime="2015-10-27T08:54:40.000Z" itemprop="datePublished"> Published 2015-10-27</time>
     
   </p>
 </header>
@@ -406,6 +422,185 @@ UsePAM <span class="literal">no</span>
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/10/27/python-argparse/" title="python argparse 模块" itemprop="url">python argparse 模块</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="jxc" target="_blank" itemprop="author">jxc</a>
+		
+  <p class="article-time">
+    <time datetime="2015-10-27T08:54:40.000Z" itemprop="datePublished"> Published 2015-10-27</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <div><br><br><figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">import argparse</div><div class="line"><span class="keyword">parse</span> = argparse.ArgumentParser()</div><div class="line"><span class="keyword">parse</span>.add_argument(<span class="string">"a"</span>, <span class="keyword">help</span>=<span class="string">"params means"</span>)</div><div class="line"><span class="keyword">parse</span>.add_argument(<span class="string">"-C"</span>, <span class="string">"--gc"</span>, default=<span class="string">"count"</span>)</div><div class="line"><span class="keyword">parse</span>.add_argument(<span class="string">"--ga"</span>, <span class="keyword">help</span>=<span class="string">"params means ga"</span>, dest=<span class="string">"simple_value"</span>, choices=['A', 'B', 'C', '<span class="keyword">D</span>'])</div><div class="line"><span class="keyword">parse</span>.add_argument(<span class="string">"--gb"</span>, <span class="keyword">help</span>=<span class="string">"params means gd"</span>, action=<span class="string">"store_const"</span>, <span class="keyword">const</span>='value-to-store')</div><div class="line"></div><div class="line"><span class="keyword">args</span> = <span class="keyword">parse</span>.parse_args()</div></pre></td></tr></table></figure><br><br><div><br><p>add_argument(“-shortname”, “–name”, help=”params means”)</p><p><br></p><p>dest:参数在程序中的变量名</p><br><p>default:参数的默认值</p><br><p>help:参数的解释作用</p><br><p>type:默认string， add_argument(“c”, type-int)</p><br><p>action: store存储到指定变量</p><br><p>store_const:存储在参数的const部分指定</p><br><p>store_true:布尔开关</p><br><p>append:存储值到列表</p><br><p>append_const:存储值到列表，存储在参数的const部分指定</p><br><p>count:统计参数简写输入的个数 add_argument(“-c”, “–gc”, action=”count”)</p><br><p>version:输出版本信息，退出</p><br><p>const:配合action=”store_counst|append_const”使用， required: 默认是False，若为True，标识必须输入该参数，choices输入值的范围</p><br><br><br><br><br></div>
+
+<p></p></div><p></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/hello/">hello</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/10/27/chromium-code/" title="chromium 代码" itemprop="url">chromium 代码</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="jxc" target="_blank" itemprop="author">jxc</a>
+		
+  <p class="article-time">
+    <time datetime="2015-10-27T08:54:40.000Z" itemprop="datePublished"> Published 2015-10-27</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2></h2>
+
+<div class="panel"><br>    <table class="table"><br>      <caption>namespace and function</caption><br>      <thead><br>        <tr><br>          <th>name</th><br>          <th>position</th><br>          <th>function</th><br>        </tr><br>      </thead><br>      <tbody><br>        <tr><br>          <th scope="row">chrome</th><br>          <td>chrome/browser/ui/browser_commands.cc</td><br>          <td></td><br>        </tr><br>        <tr><br>          <th scope="row">content</th><br>          <td>???</td><br>          <td>Thornton</td><br>        </tr><br>        <tr><br>          <th scope="row">net</th><br>          <td>net/</td><br>          <td>url_request 是关于http(s)的结构</td><br>        </tr><br>        <tr><br>          <th scope="row">prerender</th><br>          <td>chrome/browser/prerender</td><br>          <td>prerender的预先加载</td><br>        </tr><br>      </tbody><br>    </table><br><br>    <table class="table"><br>      <caption>class and it’s function</caption><br>      <thead><br>        <tr><br>          <th>name</th><br>          <th>position</th><br>          <th>function</th><br>        </tr><br>      </thead><br>      <tbody><br>        <tr><br>          <th scope="row">CookieMonster</th><br>          <td>net/cookies/cookie_monster.[cc|h]</td><br>          <td></td><br>        </tr><br>      </tbody><br>    </table><br><!-- class --><br>    <table class="table"><br>      <caption>class and function</caption><br>      <thead><br>        <tr><br>          <th>name</th><br>          <th>position</th><br>          <th>function</th><br>        </tr><br>      </thead><br>      <tbody><br>        <tr><br>          <th scope="row">browser</th><br>          <td>chrome/browser/ui/browser.h</td><br>          <td>virtual class as base class</td><br>        </tr><br>        <tr><br>            <th scope="row">WebContents</th><br>            <td>content/public/browser/web_contents.h</td><br>            <td>virtual class as base class</td><br>        </tr><br>      </tbody><br>    </table><br><br>    <table class="table"><br>      <caption>class and it’s function</caption><br>      <thead><br>        <tr><br>          <th>name</th><br>          <th>position</th><br>          <th>function</th><br>        </tr><br>      </thead><br>      <tbody><br>        <tr><br>          <th scope="row">CookieMonster</th><br>          <td>net/cookies/cookie_monster.[cc|h]</td><br>          <td></td><br>        </tr><br>      </tbody><br>    </table><br><br>    <div class="col-sm-12"><br><br>    <p>    chrome main class and namespace is in ./chrome/brower/ui/brower.h    </p><br>    <p>OpenEmpty<br>    </p><p>从OpenURL() 开始=&gt; chrome::Navigate() =&gt; chrome::LoadURLInContents() =&gt; content:: LoadURLWithParams() =&gt; LoadEntry() =&gt; class NavigationControllerDelegate<br>    </p><br>    <p>相关的文件有</p><br>    <p><br>    chrome/browser/ui/browser_navigator.cc(h)<br>    </p><br>    <p><br>    content/browser/Web_Contents<br>    </p><br>    <p><br>    content/browser/frame_host/navigation_controller_impl.cc(h)<br>    </p><br><br>    <div class="col-sm-12"><br>        chrome<br>    </div><br>    </div><br></div>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/hello/">hello</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/10/27/markdown_formatw/" title="markdown格式" itemprop="url">markdown格式</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="jxc" target="_blank" itemprop="author">jxc</a>
+		
+  <p class="article-time">
+    <time datetime="2015-10-27T08:54:40.000Z" itemprop="datePublished"> Published 2015-10-27</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>This is my first blog.<br>不太明白hexo 的markdown是谁来配置和渲染的<br>Markdown语法</p>
+<p>1、分段： 两个回车</p>
+<p>2、换行 两个空格 + 回车</p>
+<p>3、标题 #~###### 井号的个数表示几级标题，即Markdown可以表示一级标题到六级标题</p>
+<p>4、引用 &gt;</p>
+<p>5、列表 *，+，-，1.，选其中之一，注意后面有个空格</p>
+<p>6、代码区块 四个空格开头</p>
+<p>7、链接 <a href="链接地址">文字</a></p>
+<p>8、图片 <img src="图片地址" alt="图片说明">，图片地址可以是本地路劲，也可以是网络地址</p>
+<p>9、强调 <strong>文字</strong>，<strong>文字</strong>，<em>文字</em>，<em>文字</em></p>
+<p>10、代码 <code>`，</code></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/markdown-format/">markdown format</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/10/27/python-crack/" title="python 破解" itemprop="url">python 破解</a>
   </h1>
   <p class="article-author">By
@@ -413,7 +608,7 @@ UsePAM <span class="literal">no</span>
 		<a href="/about" title="jxc" target="_blank" itemprop="author">jxc</a>
 		
   <p class="article-time">
-    <time datetime="2015-10-27T08:54:40.000Z" itemprop="datePublished"> 發表於 2015-10-27</time>
+    <time datetime="2015-10-27T08:54:40.000Z" itemprop="datePublished"> Published 2015-10-27</time>
     
   </p>
 </header>
@@ -465,20 +660,31 @@ UsePAM <span class="literal">no</span>
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/10/27/test/" title="test" itemprop="url">test</a>
+      <a href="/2015/10/27/hello-world-1/" title="markdown格式" itemprop="url">markdown格式</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="jxc" target="_blank" itemprop="author">jxc</a>
 		
   <p class="article-time">
-    <time datetime="2015-10-27T03:06:35.000Z" itemprop="datePublished"> 發表於 2015-10-27</time>
+    <time datetime="2015-10-27T08:54:40.000Z" itemprop="datePublished"> Published 2015-10-27</time>
     
   </p>
 </header>
     <div class="article-content">
         
-        
+        <p>This is my first blog.<br>不太明白hexo 的markdown是谁来配置和渲染的<br>Markdown语法</p>
+<p>1、分段： 两个回车</p>
+<p>2、换行 两个空格 + 回车</p>
+<p>3、标题 #~###### 井号的个数表示几级标题，即Markdown可以表示一级标题到六级标题</p>
+<p>4、引用 &gt;</p>
+<p>5、列表 *，+，-，1.，选其中之一，注意后面有个空格</p>
+<p>6、代码区块 四个空格开头</p>
+<p>7、链接 <a href="链接地址">文字</a></p>
+<p>8、图片 <img src="图片地址" alt="图片说明">，图片地址可以是本地路劲，也可以是网络地址</p>
+<p>9、强调 <strong>文字</strong>，<strong>文字</strong>，<em>文字</em>，<em>文字</em></p>
+<p>10、代码 <code>`，</code></p>
+
         
         
         <p class="article-more-link">
@@ -508,16 +714,148 @@ UsePAM <span class="literal">no</span>
 
 
 
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/10/27/web-security/" title="web security" itemprop="url">web security</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="jxc" target="_blank" itemprop="author">jxc</a>
+		
+  <p class="article-time">
+    <time datetime="2015-10-27T08:54:40.000Z" itemprop="datePublished"> Published 2015-10-27</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p></p><h2>web </h2><p></p>
+<div class="panel"><br>    <h2> xss </h2><br>    <p><a href="https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet" target="_blank" rel="external">https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet</a></p><br>    <p> &amp; –&gt; &amp;</p><br>     <p> &lt; –&gt; &lt; </p><br>     <p> &gt; –&gt; &gt; </p><br>     <p> “ –&gt; &quot; </p><br>    <p> ‘ –&gt; &#x27;     &apos; not recommended because its not in the HTML spec (See: section 24.4.1) &apos; is in the XML and XHTML specs. </p><br>     <p> / –&gt; &#x2F; </p><br><br>    <div class="row"><br>        <div class="header"> rule #2:</div><br>        <div class="content"><br>            <h2> Escape in attribute </h2><br>            <p> including [space] % * + , - / ; &lt; = &gt; ^ and |. </p><br>        </div><br>    </div>
+
+<pre><code>&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"row"</span>&gt;
+    &lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"header"</span>&gt; rule <span class="comment">#3:&lt;/div&gt;</span>
+    &lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"content"</span>&gt;
+        &lt;h2&gt; Javascript Escape &lt;/h2&gt;
+        &lt;p&gt; including [<span class="constant">space</span>] % * + , - / ; &lt; = &gt; ^ <span class="keyword">and</span> |. &lt;/p&gt;
+    &lt;/<span class="keyword">div</span>&gt;
+&lt;/<span class="keyword">div</span>&gt;
+
+&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"row"</span>&gt;
+    &lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"header"</span>&gt; rule <span class="comment">#4:&lt;/div&gt;</span>
+    &lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"content"</span>&gt;
+        &lt;h2&gt; Escape <span class="keyword">in</span> attribute &lt;/h2&gt;
+        &lt;p&gt; including [<span class="constant">space</span>] % * + , - / ; &lt; = &gt; ^ <span class="keyword">and</span> |. &lt;/p&gt;
+    &lt;/<span class="keyword">div</span>&gt;
+&lt;/<span class="keyword">div</span>&gt;
+</code></pre><div>
+</div></div>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/hello/">hello</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/10/27/ajax/" title="ajax" itemprop="url">ajax</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="jxc" target="_blank" itemprop="author">jxc</a>
+		
+  <p class="article-time">
+    <time datetime="2015-10-27T08:54:40.000Z" itemprop="datePublished"> Published 2015-10-27</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        
+<h2>关于ajax</h2>
+<p>最近在用dropzone和jquery-File-Uploader这连个插件，需要异步发送文件，为了确保使用正确，顺道看了下这两个插件的代码</p>
+
+<h2>关于jQuery.ajax的使用和参数</h2>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/hello/">hello</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
 
   <nav id="page-nav" class="clearfix">
     <a class="extend prev" rel="prev" href="/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
   </nav>
 
 </div>
-      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
@@ -527,11 +865,19 @@ UsePAM <span class="literal">no</span>
 
   
 <div class="tagslist">
-	<p class="asidetitle">標簽</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			
 				<li><a href="/tags/hello/" title="hello">hello<sup>10</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/thinking/" title="thinking">thinking<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/markdown-format/" title="markdown format">markdown format<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -539,7 +885,7 @@ UsePAM <span class="literal">no</span>
 
 
   <div class="linkslist">
-  <p class="asidetitle">友情鏈接</p>
+  <p class="asidetitle">Links</p>
     <ul>
         
           <li>
@@ -561,11 +907,11 @@ UsePAM <span class="literal">no</span>
 
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
 </div>
 
   <div class="weiboshow">
-  <p class="asidetitle">新浪微博</p>
+  <p class="asidetitle">Weibo</p>
     <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=b3593ceb&dpc=1"></iframe>
 </div>
 
@@ -604,7 +950,7 @@ UsePAM <span class="literal">no</span>
 		
 
 		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
 		
 		<a href="/about" target="_blank" title="jxc">jxc</a>
 		
@@ -710,7 +1056,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 

@@ -12,6 +12,7 @@
 
     
     <meta name="description" content="12345678import argparseparse = argparse.ArgumentParser()parse.add_argument(&quot;a&quot;, help=&quot;params means&quot;)parse.add_argument(&quot;-C&quot;, &quot;--gc&quot;, default=&quot;count&quot;)parse.add_argument(&quot;--ga&quot;, help=&quot;params means ga&quot;,">
+<meta name="keywords" content="hello">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python argparse 模块">
 <meta property="og:url" content="http://yoursite.com/2015/10/27/python-argparse/index.html">
@@ -32,7 +33,7 @@
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
   <body>
@@ -48,7 +49,7 @@
 				<h1 class="site-name"><a href="/" title="Jcx&#39;s Blog">Jcx&#39;s Blog</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -64,7 +65,7 @@
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
 						<input type="hidden" name="q" value="site:yoursite.com">
 					</form>
 					
@@ -87,20 +88,20 @@
 		<a href="/about" title="jxc" target="_blank" itemprop="author">jxc</a>
 		
   <p class="article-time">
-    <time datetime="2015-10-27T08:54:40.000Z" itemprop="datePublished"> 發表於 2015-10-27</time>
+    <time datetime="2015-10-27T08:54:40.000Z" itemprop="datePublished"> Published 2015-10-27</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目錄</strong>
+			<strong class="toc-title">Contents</strong>
 		
 			
 		
 		</div>
 		
-		<div><br><br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import argparse</span><br><span class="line">parse = argparse.<span class="function"><span class="title">ArgumentParser</span><span class="params">()</span></span></span><br><span class="line">parse.<span class="function"><span class="title">add_argument</span><span class="params">(<span class="string">"a"</span>, help=<span class="string">"params means"</span>)</span></span></span><br><span class="line">parse.<span class="function"><span class="title">add_argument</span><span class="params">(<span class="string">"-C"</span>, <span class="string">"--gc"</span>, default=<span class="string">"count"</span>)</span></span></span><br><span class="line">parse.<span class="function"><span class="title">add_argument</span><span class="params">(<span class="string">"--ga"</span>, help=<span class="string">"params means ga"</span>, dest=<span class="string">"simple_value"</span>, choices=[<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>, <span class="string">'D'</span>])</span></span></span><br><span class="line">parse.<span class="function"><span class="title">add_argument</span><span class="params">(<span class="string">"--gb"</span>, help=<span class="string">"params means gd"</span>, action=<span class="string">"store_const"</span>, const=<span class="string">'value-to-store'</span>)</span></span></span><br><span class="line"></span><br><span class="line">args = parse.<span class="function"><span class="title">parse_args</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure><br><br><div><br><p>add_argument(“-shortname”, “–name”, help=”params means”)</p><p><br></p><p>dest:参数在程序中的变量名</p><br><p>default:参数的默认值</p><br><p>help:参数的解释作用</p><br><p>type:默认string， add_argument(“c”, type-int)</p><br><p>action: store存储到指定变量</p><br><p>store_const:存储在参数的const部分指定</p><br><p>store_true:布尔开关</p><br><p>append:存储值到列表</p><br><p>append_const:存储值到列表，存储在参数的const部分指定</p><br><p>count:统计参数简写输入的个数 add_argument(“-c”, “–gc”, action=”count”)</p><br><p>version:输出版本信息，退出</p><br><p>const:配合action=”store_counst|append_const”使用， required: 默认是False，若为True，标识必须输入该参数，choices输入值的范围</p><br><br><br><br><br></div>
+		<div><br><br><figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">import argparse</div><div class="line"><span class="keyword">parse</span> = argparse.ArgumentParser()</div><div class="line"><span class="keyword">parse</span>.add_argument(<span class="string">"a"</span>, <span class="keyword">help</span>=<span class="string">"params means"</span>)</div><div class="line"><span class="keyword">parse</span>.add_argument(<span class="string">"-C"</span>, <span class="string">"--gc"</span>, default=<span class="string">"count"</span>)</div><div class="line"><span class="keyword">parse</span>.add_argument(<span class="string">"--ga"</span>, <span class="keyword">help</span>=<span class="string">"params means ga"</span>, dest=<span class="string">"simple_value"</span>, choices=['A', 'B', 'C', '<span class="keyword">D</span>'])</div><div class="line"><span class="keyword">parse</span>.add_argument(<span class="string">"--gb"</span>, <span class="keyword">help</span>=<span class="string">"params means gd"</span>, action=<span class="string">"store_const"</span>, <span class="keyword">const</span>='value-to-store')</div><div class="line"></div><div class="line"><span class="keyword">args</span> = <span class="keyword">parse</span>.parse_args()</div></pre></td></tr></table></figure><br><br><div><br><p>add_argument(“-shortname”, “–name”, help=”params means”)</p><p><br></p><p>dest:参数在程序中的变量名</p><br><p>default:参数的默认值</p><br><p>help:参数的解释作用</p><br><p>type:默认string， add_argument(“c”, type-int)</p><br><p>action: store存储到指定变量</p><br><p>store_const:存储在参数的const部分指定</p><br><p>store_true:布尔开关</p><br><p>append:存储值到列表</p><br><p>append_const:存储值到列表，存储在参数的const部分指定</p><br><p>count:统计参数简写输入的个数 add_argument(“-c”, “–gc”, action=”count”)</p><br><p>version:输出版本信息，退出</p><br><p>const:配合action=”store_counst|append_const”使用， required: 默认是False，若为True，标识必须输入该参数，choices输入值的范围</p><br><br><br><br><br></div>
 
 <p></p></div><p></p>
   
@@ -134,18 +135,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2015/10/27/ctf/" title="CTF">
+ <a href="/2015/10/27/python-crack/" title="python 破解">
   <strong>上一篇：</strong><br/>
   <span>
-  CTF</span>
+  python 破解</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2015/10/27/mongodb-grammer/"  title="mongodb grammer">
+<a href="/2015/10/27/web-security/"  title="web security">
  <strong>下一篇：</strong><br/> 
- <span>mongodb grammer
+ <span>web security
 </span>
 </a>
 </div>
@@ -155,17 +156,17 @@
 	
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目錄</strong>
+  <strong class="toc-title">Contents</strong>
  
  
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
@@ -175,11 +176,19 @@
 
   
 <div class="tagslist">
-	<p class="asidetitle">標簽</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			
 				<li><a href="/tags/hello/" title="hello">hello<sup>10</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/thinking/" title="thinking">thinking<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/markdown-format/" title="markdown format">markdown format<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -187,7 +196,7 @@
 
 
   <div class="linkslist">
-  <p class="asidetitle">友情鏈接</p>
+  <p class="asidetitle">Links</p>
     <ul>
         
           <li>
@@ -209,11 +218,11 @@
 
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
 </div>
 
   <div class="weiboshow">
-  <p class="asidetitle">新浪微博</p>
+  <p class="asidetitle">Weibo</p>
     <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=b3593ceb&dpc=1"></iframe>
 </div>
 
@@ -252,7 +261,7 @@
 		
 
 		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
 		
 		<a href="/about" target="_blank" title="jxc">jxc</a>
 		
@@ -435,7 +444,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 

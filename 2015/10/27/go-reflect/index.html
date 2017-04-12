@@ -11,25 +11,17 @@
     
 
     
-    <meta name="description" content="title: golang reflectdate: 2015-10-27 16:54:40
-tags: [hello]关于golang 的reflect 和 structTag
-
-12345678910111213141516171819# 例子package mainimport (	&quot;fmt&quot;	&quot;reflect&quot;)func main() &amp;#123;	type S struct &amp;#123;">
+    <meta name="description" content="title: golang reflectdate: 2015-10-27 16:54:40 tags: [hello]关于golang 的reflect 和 structTag  12345678910111213141516171819# 例子package mainimport (	&quot;fmt&quot;	&quot;reflect&quot;)func main() &amp;#123;	type S struct &amp;#123;">
+<meta name="keywords">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Jcx's Blog">
 <meta property="og:url" content="http://yoursite.com/2015/10/27/go-reflect/index.html">
 <meta property="og:site_name" content="Jcx's Blog">
-<meta property="og:description" content="title: golang reflectdate: 2015-10-27 16:54:40
-tags: [hello]关于golang 的reflect 和 structTag
-
-12345678910111213141516171819# 例子package mainimport (	&quot;fmt&quot;	&quot;reflect&quot;)func main() &amp;#123;	type S struct &amp;#123;">
+<meta property="og:description" content="title: golang reflectdate: 2015-10-27 16:54:40 tags: [hello]关于golang 的reflect 和 structTag  12345678910111213141516171819# 例子package mainimport (	&quot;fmt&quot;	&quot;reflect&quot;)func main() &amp;#123;	type S struct &amp;#123;">
 <meta property="og:updated_time" content="2015-10-27T11:25:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Jcx's Blog">
-<meta name="twitter:description" content="title: golang reflectdate: 2015-10-27 16:54:40
-tags: [hello]关于golang 的reflect 和 structTag
-
-12345678910111213141516171819# 例子package mainimport (	&quot;fmt&quot;	&quot;reflect&quot;)func main() &amp;#123;	type S struct &amp;#123;">
+<meta name="twitter:description" content="title: golang reflectdate: 2015-10-27 16:54:40 tags: [hello]关于golang 的reflect 和 structTag  12345678910111213141516171819# 例子package mainimport (	&quot;fmt&quot;	&quot;reflect&quot;)func main() &amp;#123;	type S struct &amp;#123;">
 
     
     <link rel="alternative" href="/atom.xml" title="Jcx&#39;s Blog" type="application/atom+xml">
@@ -41,7 +33,7 @@ tags: [hello]关于golang 的reflect 和 structTag
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
   <body>
@@ -57,7 +49,7 @@ tags: [hello]关于golang 的reflect 和 structTag
 				<h1 class="site-name"><a href="/" title="Jcx&#39;s Blog">Jcx&#39;s Blog</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -73,7 +65,7 @@ tags: [hello]关于golang 的reflect 和 structTag
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
 						<input type="hidden" name="q" value="site:yoursite.com">
 					</form>
 					
@@ -96,14 +88,14 @@ tags: [hello]关于golang 的reflect 和 structTag
 		<a href="/about" title="jxc" target="_blank" itemprop="author">jxc</a>
 		
   <p class="article-time">
-    <time datetime="2015-10-27T11:25:16.000Z" itemprop="datePublished"> 發表於 2015-10-27</time>
+    <time datetime="2015-10-27T11:25:16.000Z" itemprop="datePublished"> Published 2015-10-27</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目錄</strong>
+			<strong class="toc-title">Contents</strong>
 		
 			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#tags:_[hello]"><span class="toc-number">1.</span> <span class="toc-text">tags: [hello]</span></a></li></ol>
 		
@@ -112,7 +104,7 @@ tags: [hello]关于golang 的reflect 和 structTag
 		<p>title: golang reflect<br>date: 2015-10-27 16:54:40</p>
 <h2 id="tags:_[hello]">tags: [hello]</h2><p>关于golang 的reflect 和 structTag</p><br><p></p>
 
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"># 例子</span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"reflect"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() &#123;</span><br><span class="line">	<span class="keyword">type</span> S <span class="keyword">struct</span> &#123;</span><br><span class="line">		F <span class="typename">string</span> <span class="string">`species:"gopher" color:"blue"`</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	s := S&#123;&#125;</span><br><span class="line">	st := reflect.TypeOf(s)</span><br><span class="line">	field := st.Field(<span class="number">0</span>)</span><br><span class="line">	fmt.Println(field.Tag.Get(<span class="string">"color"</span>), field.Tag.Get(<span class="string">"species"</span>))</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"># 例子</div><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> (</div><div class="line">	<span class="string">"fmt"</span></div><div class="line">	<span class="string">"reflect"</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">	<span class="keyword">type</span> S <span class="keyword">struct</span> &#123;</div><div class="line">		F <span class="keyword">string</span> <span class="string">`species:"gopher" color:"blue"`</span></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	s := S&#123;&#125;</div><div class="line">	st := reflect.TypeOf(s)</div><div class="line">	field := st.Field(<span class="number">0</span>)</div><div class="line">	fmt.Println(field.Tag.Get(<span class="string">"color"</span>), field.Tag.Get(<span class="string">"species"</span>))</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <a id="more"></a>
 <p>reflect得到了　type Type</p><br><p>从type Type 中Field(index) 得到第index的域对应的StructTag</p><br><p>StructTag.Get(key) 得到对应的 value</p>
 
@@ -142,11 +134,19 @@ tags: [hello]关于golang 的reflect 和 structTag
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2015/10/27/python-module/" title="python module">
+  <strong>上一篇：</strong><br/>
+  <span>
+  python module</span>
+</a>
+</div>
+
 
 <div class="next">
-<a href="/2015/10/27/安全名词/"  title="">
+<a href="/2015/10/28/thinking/"  title="thinking">
  <strong>下一篇：</strong><br/> 
- <span>(no title)
+ <span>thinking
 </span>
 </a>
 </div>
@@ -156,17 +156,17 @@ tags: [hello]关于golang 的reflect 和 structTag
 	
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目錄</strong>
+  <strong class="toc-title">Contents</strong>
  
  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#tags:_[hello]"><span class="toc-number">1.</span> <span class="toc-text">tags: [hello]</span></a></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
@@ -176,11 +176,19 @@ tags: [hello]关于golang 的reflect 和 structTag
 
   
 <div class="tagslist">
-	<p class="asidetitle">標簽</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			
 				<li><a href="/tags/hello/" title="hello">hello<sup>10</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/thinking/" title="thinking">thinking<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/markdown-format/" title="markdown format">markdown format<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -188,7 +196,7 @@ tags: [hello]关于golang 的reflect 和 structTag
 
 
   <div class="linkslist">
-  <p class="asidetitle">友情鏈接</p>
+  <p class="asidetitle">Links</p>
     <ul>
         
           <li>
@@ -210,11 +218,11 @@ tags: [hello]关于golang 的reflect 和 structTag
 
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
 </div>
 
   <div class="weiboshow">
-  <p class="asidetitle">新浪微博</p>
+  <p class="asidetitle">Weibo</p>
     <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=b3593ceb&dpc=1"></iframe>
 </div>
 
@@ -253,7 +261,7 @@ tags: [hello]关于golang 的reflect 和 structTag
 		
 
 		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
 		
 		<a href="/about" target="_blank" title="jxc">jxc</a>
 		
@@ -436,7 +444,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
