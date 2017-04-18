@@ -11,17 +11,17 @@
     
 
     
-    <meta name="description" content="page 结构以及一些用法关于Page-&amp;gt;flags 中各个域的使用，晚上资料很多 在ULK3 中页面那章也有罗列。 碰到的问题合并后的页面的标志位如何设置？比如页面还是否可写？">
+    <meta name="description" content="page 结构以及一些用法关于Page-&amp;gt;flags 中各个域的使用，晚上资料很多 在ULK3 中页面那章也有罗列。 do_wp_page()函数中首先把原页面 set_pte_at ，后面再判断 flags &amp;amp; FAULT_FLAG_WRITE 决定是否需要执行do_wp_page() 这样做的好处是 把 count 计数路基清楚 ###其中ksm_might_need_to_">
 <meta name="keywords" content="hello">
 <meta property="og:type" content="article">
 <meta property="og:title" content="linux 代码 -  本次只涉及 page cache, tmpfs文件系统代码">
 <meta property="og:url" content="http://yoursite.com/2017/04/10/linux-page-and-tmpfs/index.html">
 <meta property="og:site_name" content="Jcx's Blog">
-<meta property="og:description" content="page 结构以及一些用法关于Page-&amp;gt;flags 中各个域的使用，晚上资料很多 在ULK3 中页面那章也有罗列。 碰到的问题合并后的页面的标志位如何设置？比如页面还是否可写？">
-<meta property="og:updated_time" content="2017-04-12T16:36:24.000Z">
+<meta property="og:description" content="page 结构以及一些用法关于Page-&amp;gt;flags 中各个域的使用，晚上资料很多 在ULK3 中页面那章也有罗列。 do_wp_page()函数中首先把原页面 set_pte_at ，后面再判断 flags &amp;amp; FAULT_FLAG_WRITE 决定是否需要执行do_wp_page() 这样做的好处是 把 count 计数路基清楚 ###其中ksm_might_need_to_">
+<meta property="og:updated_time" content="2017-04-17T16:36:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux 代码 -  本次只涉及 page cache, tmpfs文件系统代码">
-<meta name="twitter:description" content="page 结构以及一些用法关于Page-&amp;gt;flags 中各个域的使用，晚上资料很多 在ULK3 中页面那章也有罗列。 碰到的问题合并后的页面的标志位如何设置？比如页面还是否可写？">
+<meta name="twitter:description" content="page 结构以及一些用法关于Page-&amp;gt;flags 中各个域的使用，晚上资料很多 在ULK3 中页面那章也有罗列。 do_wp_page()函数中首先把原页面 set_pte_at ，后面再判断 flags &amp;amp; FAULT_FLAG_WRITE 决定是否需要执行do_wp_page() 这样做的好处是 把 count 计数路基清楚 ###其中ksm_might_need_to_">
 
     
     <link rel="alternative" href="/atom.xml" title="Jcx&#39;s Blog" type="application/atom+xml">
@@ -97,13 +97,16 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#page_结构以及一些用法"><span class="toc-number">2.</span> <span class="toc-text">page 结构以及一些用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#碰到的问题"><span class="toc-number">3.</span> <span class="toc-text">碰到的问题</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#page_结构以及一些用法"><span class="toc-number">2.</span> <span class="toc-text">page 结构以及一些用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#do_wp_page()"><span class="toc-number">3.</span> <span class="toc-text">do_wp_page()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#碰到的问题"><span class="toc-number">4.</span> <span class="toc-text">碰到的问题</span></a></li></ol>
 		
 		</div>
 		
 		<h2></h2>
 
 <h2 id="page_结构以及一些用法">page 结构以及一些用法</h2><p>关于Page-&gt;flags 中各个域的使用，晚上资料很多 在ULK3 中页面那章也有罗列。</p>
+<h2 id="do_wp_page()">do_wp_page()</h2><p>函数中首先把原页面 set_pte_at ，后面再判断 flags &amp; FAULT_FLAG_WRITE 决定是否需要执行do_wp_page()</p>
+<p>这样做的好处是 把 count 计数路基清楚</p>
+<p>###其中ksm_might_need_to_copy()<br>需要得到一个自己可以完全控制的页面</p>
 <h2 id="碰到的问题">碰到的问题</h2><p>合并后的页面的标志位如何设置？比如页面还是否可写？ </p>
   
 	</div>
@@ -145,9 +148,9 @@
 
 
 <div class="next">
-<a href="/2017/04/13/hexo/"  title="Hexo Quick Start">
+<a href="/2017/04/17/ps/"  title="PS啦啦啦真好玩">
  <strong>下一篇：</strong><br/> 
- <span>Hexo Quick Start
+ <span>PS啦啦啦真好玩
 </span>
 </a>
 </div>
@@ -162,7 +165,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#page_结构以及一些用法"><span class="toc-number">2.</span> <span class="toc-text">page 结构以及一些用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#碰到的问题"><span class="toc-number">3.</span> <span class="toc-text">碰到的问题</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#page_结构以及一些用法"><span class="toc-number">2.</span> <span class="toc-text">page 结构以及一些用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#do_wp_page()"><span class="toc-number">3.</span> <span class="toc-text">do_wp_page()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#碰到的问题"><span class="toc-number">4.</span> <span class="toc-text">碰到的问题</span></a></li></ol>
  
   </div>
 
@@ -182,6 +185,10 @@
 		
 			
 				<li><a href="/tags/hello/" title="hello">hello<sup>10</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/PS/" title="PS">PS<sup>1</sup></a></li>
 			
 		
 			

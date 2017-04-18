@@ -78,14 +78,68 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/04/13/hexo/" title="Hexo Quick Start" itemprop="url">Hexo Quick Start</a>
+      <a href="/2017/04/19/go-reflect/" title="" itemprop="url"></a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="jxc" target="_blank" itemprop="author">jxc</a>
 		
   <p class="article-time">
-    <time datetime="2017-04-12T16:36:14.000Z" itemprop="datePublished"> Published 2017-04-13</time>
+    <time datetime="2017-04-18T17:04:16.000Z" itemprop="datePublished"> Published 2017-04-19</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>title: golang reflect<br>date: 2015-10-27 16:54:40</p>
+<h2 id="tags:_[hello]">tags: [hello]</h2><p>关于golang 的reflect 和 structTag</p><br><p></p>
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"># 例子</div><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> (</div><div class="line">	<span class="string">"fmt"</span></div><div class="line">	<span class="string">"reflect"</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">	<span class="keyword">type</span> S <span class="keyword">struct</span> &#123;</div><div class="line">		F <span class="keyword">string</span> <span class="string">`species:"gopher" color:"blue"`</span></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	s := S&#123;&#125;</div><div class="line">	st := reflect.TypeOf(s)</div><div class="line">	field := st.Field(<span class="number">0</span>)</div><div class="line">	fmt.Println(field.Tag.Get(<span class="string">"color"</span>), field.Tag.Get(<span class="string">"species"</span>))</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2017/04/19/go-reflect/#more">Read More</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/04/18/hexo/" title="Hexo Quick Start" itemprop="url">Hexo Quick Start</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="jxc" target="_blank" itemprop="author">jxc</a>
+		
+  <p class="article-time">
+    <time datetime="2017-04-17T16:37:02.000Z" itemprop="datePublished"> Published 2017-04-18</time>
     
   </p>
 </header>
@@ -138,6 +192,65 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2017/04/17/ps/" title="PS啦啦啦真好玩" itemprop="url">PS啦啦啦真好玩</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="jxc" target="_blank" itemprop="author">jxc</a>
+		
+  <p class="article-time">
+    <time datetime="2017-04-16T16:54:40.000Z" itemprop="datePublished"> Published 2017-04-17</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2></h2>
+
+<h2 id="调节亮度">调节亮度</h2><ul>
+<li></li>
+</ul>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/PS/">PS</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2017/04/10/linux-page-and-tmpfs/" title="linux 代码 -  本次只涉及 page cache, tmpfs文件系统代码" itemprop="url">linux 代码 -  本次只涉及 page cache, tmpfs文件系统代码</a>
   </h1>
   <p class="article-author">By
@@ -154,6 +267,9 @@
         <h2></h2>
 
 <h2 id="page_结构以及一些用法">page 结构以及一些用法</h2><p>关于Page-&gt;flags 中各个域的使用，晚上资料很多 在ULK3 中页面那章也有罗列。</p>
+<h2 id="do_wp_page()">do_wp_page()</h2><p>函数中首先把原页面 set_pte_at ，后面再判断 flags &amp; FAULT_FLAG_WRITE 决定是否需要执行do_wp_page()</p>
+<p>这样做的好处是 把 count 计数路基清楚</p>
+<p>###其中ksm_might_need_to_copy()<br>需要得到一个自己可以完全控制的页面</p>
 <h2 id="碰到的问题">碰到的问题</h2><p>合并后的页面的标志位如何设置？比如页面还是否可写？ </p>
 
         
@@ -424,60 +540,6 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/10/27/go-reflect/" title="" itemprop="url"></a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="jxc" target="_blank" itemprop="author">jxc</a>
-		
-  <p class="article-time">
-    <time datetime="2015-10-27T11:25:16.000Z" itemprop="datePublished"> Published 2015-10-27</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>title: golang reflect<br>date: 2015-10-27 16:54:40</p>
-<h2 id="tags:_[hello]">tags: [hello]</h2><p>关于golang 的reflect 和 structTag</p><br><p></p>
-
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"># 例子</div><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> (</div><div class="line">	<span class="string">"fmt"</span></div><div class="line">	<span class="string">"reflect"</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">	<span class="keyword">type</span> S <span class="keyword">struct</span> &#123;</div><div class="line">		F <span class="keyword">string</span> <span class="string">`species:"gopher" color:"blue"`</span></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	s := S&#123;&#125;</div><div class="line">	st := reflect.TypeOf(s)</div><div class="line">	field := st.Field(<span class="number">0</span>)</div><div class="line">	fmt.Println(field.Tag.Get(<span class="string">"color"</span>), field.Tag.Get(<span class="string">"species"</span>))</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2015/10/27/go-reflect/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
       <a href="/2015/10/27/安全名词/" title="" itemprop="url"></a>
   </h1>
   <p class="article-author">By
@@ -575,65 +637,6 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/10/27/ajax/" title="ajax" itemprop="url">ajax</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="jxc" target="_blank" itemprop="author">jxc</a>
-		
-  <p class="article-time">
-    <time datetime="2015-10-27T08:54:40.000Z" itemprop="datePublished"> Published 2015-10-27</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        
-<h2>关于ajax</h2>
-<p>最近在用dropzone和jquery-File-Uploader这连个插件，需要异步发送文件，为了确保使用正确，顺道看了下这两个插件的代码</p>
-
-<h2>关于jQuery.ajax的使用和参数</h2>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/hello/">hello</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
@@ -658,6 +661,10 @@
 		
 			
 				<li><a href="/tags/hello/" title="hello">hello<sup>10</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/PS/" title="PS">PS<sup>1</sup></a></li>
 			
 		
 			
