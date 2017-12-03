@@ -78,63 +78,6 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/04/19/go-定时器/" title="" itemprop="url"></a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="jxc" target="_blank" itemprop="author">jxc</a>
-		
-  <p class="article-time">
-    <time datetime="2017-04-18T17:04:16.000Z" itemprop="datePublished"> Published 2017-04-19</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>title: golang timer<br>date: 2015-10-27 16:54:40</p>
-<h2 id="tags:_[golang]">tags: [golang]</h2><p>关于golang 的定时器主要设计time这个包</p><br><p>我以前使用时一直都是这么用的</p><br><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"># 很土的用法</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">test3</span><span class="params">()</span></span> &#123;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> &#123;</div><div class="line">        <span class="keyword">select</span> &#123;</div><div class="line">            <span class="keyword">case</span> &lt;- ch:</div><div class="line">            <span class="comment">/* case 1 */</span></div><div class="line">            <span class="keyword">case</span> &lt;- time.After(<span class="number">2</span> * time.Second):</div><div class="line">            <span class="comment">/* case 2 */</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><br><p>这样子写很不好，主要是select在有多个条件满足时，会随机选一个，但是当channel中一直有数据时，time.After()却一直得不到执行，当前我还不知道什么原因</p>
-
-<p></p>
-
-<p>使用time.NewTicker()却可以避免这个问题</p><br><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"># 使用time.NewTicker</div><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">test3</span><span class="params">()</span></span> &#123;</div><div class="line">    ticker := time.NewTicker(<span class="number">2</span> * time.Second)</div><div class="line">    <span class="keyword">defer</span> ticker.Stop()</div><div class="line">    ch := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>, <span class="number">10</span>)</div><div class="line">    <span class="keyword">go</span> add(ch)</div><div class="line">    <span class="keyword">for</span> &#123;</div><div class="line">        <span class="keyword">select</span> &#123;</div><div class="line">            <span class="keyword">case</span> &lt;- ch:</div><div class="line">                <span class="comment">/* case 1 */</span></div><div class="line">            <span class="keyword">case</span> &lt;- ticker.C:</div><div class="line">                <span class="comment">/* case 2 */</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><br><br><p></p>
-
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"># 使用独立的两个<span class="keyword">switch</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">test4</span><span class="params">()</span></span> &#123;</div><div class="line">    ticker := time.NewTicker(<span class="number">2</span> * time.Second)</div><div class="line">    <span class="keyword">defer</span> ticker.Stop()</div><div class="line">    ch := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>, <span class="number">10</span>)</div><div class="line">    <span class="keyword">go</span> add(ch)</div><div class="line">    <span class="keyword">for</span> &#123;</div><div class="line">        <span class="keyword">select</span> &#123;</div><div class="line">            <span class="keyword">case</span> &lt;- ch:</div><div class="line">            	<span class="comment">/* case 1 */</span></div><div class="line">            <span class="keyword">default</span>: <span class="comment">// forbid block</span></div><div class="line">        &#125;</div><div class="line">        <span class="keyword">select</span> &#123;</div><div class="line">            <span class="keyword">case</span> &lt;- ticker.C:</div><div class="line">            	<span class="comment">/* case 2 */</span></div><div class="line">                fmt.Println(<span class="string">"timeout"</span>)</div><div class="line">                <span class="keyword">return</span></div><div class="line">            <span class="keyword">default</span>: <span class="comment">// forbid block</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
       <a href="/2017/04/19/go-reflect/" title="" itemprop="url"></a>
   </h1>
   <p class="article-author">By
@@ -644,6 +587,56 @@
 
 
 
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/10/27/python-module/" title="python module" itemprop="url">python module</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="jxc" target="_blank" itemprop="author">jxc</a>
+		
+  <p class="article-time">
+    <time datetime="2015-10-27T11:21:36.000Z" itemprop="datePublished"> Published 2015-10-27</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <div class="container-fluid"><br><p>impacket <a href="https://github.com/coresecurity/impacket" target="_blank" rel="external">github</a></p><br><p> 命令行基本工具 net-tool , tcpdump, nmap </p><br><br><p>netstat, ss, traceroute, logging </p><br><br><p>python module: nfqueue(netfilterqueue)</p><p><br><br></p><p>libnfnetlink, netfilter_queue</p><br><br></div>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
 
   <nav id="page-nav" class="clearfix">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
@@ -668,6 +661,10 @@
 		
 			
 				<li><a href="/tags/hello/" title="hello">hello<sup>10</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Golang/" title="Golang">Golang<sup>1</sup></a></li>
 			
 		
 			
