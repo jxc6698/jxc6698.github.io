@@ -78,6 +78,63 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2017/04/19/go-定时器/" title="" itemprop="url"></a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="jxc" target="_blank" itemprop="author">jxc</a>
+		
+  <p class="article-time">
+    <time datetime="2017-04-18T17:04:16.000Z" itemprop="datePublished"> Published 2017-04-19</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>title: golang timer<br>date: 2015-10-27 16:54:40</p>
+<h2 id="tags:_[golang]">tags: [golang]</h2><p>关于golang 的定时器主要设计time这个包</p><br><p>我以前使用时一直都是这么用的</p><br><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"># 很土的用法</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">test3</span><span class="params">()</span></span> &#123;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> &#123;</div><div class="line">        <span class="keyword">select</span> &#123;</div><div class="line">            <span class="keyword">case</span> &lt;- ch:</div><div class="line">            <span class="comment">/* case 1 */</span></div><div class="line">            <span class="keyword">case</span> &lt;- time.After(<span class="number">2</span> * time.Second):</div><div class="line">            <span class="comment">/* case 2 */</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><br><p>这样子写很不好，主要是select在有多个条件满足时，会随机选一个，但是当channel中一直有数据时，time.After()却一直得不到执行，当前我还不知道什么原因</p>
+
+<p></p>
+
+<p>使用time.NewTicker()却可以避免这个问题</p><br><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"># 使用time.NewTicker</div><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">test3</span><span class="params">()</span></span> &#123;</div><div class="line">    ticker := time.NewTicker(<span class="number">2</span> * time.Second)</div><div class="line">    <span class="keyword">defer</span> ticker.Stop()</div><div class="line">    ch := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>, <span class="number">10</span>)</div><div class="line">    <span class="keyword">go</span> add(ch)</div><div class="line">    <span class="keyword">for</span> &#123;</div><div class="line">        <span class="keyword">select</span> &#123;</div><div class="line">            <span class="keyword">case</span> &lt;- ch:</div><div class="line">                <span class="comment">/* case 1 */</span></div><div class="line">            <span class="keyword">case</span> &lt;- ticker.C:</div><div class="line">                <span class="comment">/* case 2 */</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><br><br><p></p>
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"># 使用独立的两个<span class="keyword">switch</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">test4</span><span class="params">()</span></span> &#123;</div><div class="line">    ticker := time.NewTicker(<span class="number">2</span> * time.Second)</div><div class="line">    <span class="keyword">defer</span> ticker.Stop()</div><div class="line">    ch := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>, <span class="number">10</span>)</div><div class="line">    <span class="keyword">go</span> add(ch)</div><div class="line">    <span class="keyword">for</span> &#123;</div><div class="line">        <span class="keyword">select</span> &#123;</div><div class="line">            <span class="keyword">case</span> &lt;- ch:</div><div class="line">            	<span class="comment">/* case 1 */</span></div><div class="line">            <span class="keyword">default</span>: <span class="comment">// forbid block</span></div><div class="line">        &#125;</div><div class="line">        <span class="keyword">select</span> &#123;</div><div class="line">            <span class="keyword">case</span> &lt;- ticker.C:</div><div class="line">            	<span class="comment">/* case 2 */</span></div><div class="line">                fmt.Println(<span class="string">"timeout"</span>)</div><div class="line">                <span class="keyword">return</span></div><div class="line">            <span class="keyword">default</span>: <span class="comment">// forbid block</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2017/04/19/go-reflect/" title="" itemprop="url"></a>
   </h1>
   <p class="article-author">By
@@ -92,14 +149,67 @@
     <div class="article-content">
         
         <p>title: golang reflect<br>date: 2015-10-27 16:54:40</p>
-<h2 id="tags:_[hello]">tags: [hello]</h2><p>关于golang 的reflect 和 structTag</p><br><p></p>
+<h2 id="tags:_[golang]">tags: [golang]</h2><p>关于golang 的reflect 和 structTag</p><br><p></p>
 
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"># 例子</div><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> (</div><div class="line">	<span class="string">"fmt"</span></div><div class="line">	<span class="string">"reflect"</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">	<span class="keyword">type</span> S <span class="keyword">struct</span> &#123;</div><div class="line">		F <span class="keyword">string</span> <span class="string">`species:"gopher" color:"blue"`</span></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	s := S&#123;&#125;</div><div class="line">	st := reflect.TypeOf(s)</div><div class="line">	field := st.Field(<span class="number">0</span>)</div><div class="line">	fmt.Println(field.Tag.Get(<span class="string">"color"</span>), field.Tag.Get(<span class="string">"species"</span>))</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"># 例子：获取tag的值</div><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> (</div><div class="line">	<span class="string">"fmt"</span></div><div class="line">	<span class="string">"reflect"</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">	<span class="keyword">type</span> S <span class="keyword">struct</span> &#123;</div><div class="line">		F <span class="keyword">string</span> <span class="string">`species:"gopher" color:"blue"`</span></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	s := S&#123;&#125;</div><div class="line">	st := reflect.TypeOf(s)</div><div class="line">	field := st.Field(<span class="number">0</span>)</div><div class="line">	fmt.Println(field.Tag.Get(<span class="string">"color"</span>), field.Tag.Get(<span class="string">"species"</span>))</div><div class="line"></div><div class="line">	<span class="keyword">return</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
         
         
         <p class="article-more-link">
           
             <a href="/2017/04/19/go-reflect/#more">Read More</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/04/19/go-runtime/" title="" itemprop="url"></a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="jxc" target="_blank" itemprop="author">jxc</a>
+		
+  <p class="article-time">
+    <time datetime="2017-04-18T17:04:16.000Z" itemprop="datePublished"> Published 2017-04-19</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>title: golang runtime 包<br>date: 2015-10-27 16:54:40</p>
+<h2 id="tags:_[golang]">tags: [golang]</h2><p>关于golang runtime 包中功能</p><br><p>设计进程数量</p><br><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># 为了并行，设置和cpu数量一样多的线程</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">init</span><span class="params">()</span></span> &#123;</div><div class="line">    runtime.GOMAXPROCS(runtime.NumCPU())</div><div class="line">&#125;</div></pre></td></tr></table></figure><br><br><p></p>
+
+
+
+        
+        
+        <p class="article-more-link">
           
        </p>
     </div>
@@ -207,9 +317,14 @@
         
         <h2></h2>
 
-<h2 id="调节亮度">调节亮度</h2><ul>
-<li></li>
-</ul>
+<h2 id="调节亮度">调节亮度</h2><ol>
+<li>赋值图层 -&gt; 图层属性 正常 改成 滤色 ， 调节填充百分比</li>
+<li>复制图层 -&gt; 选择 图像 -&gt; 调整 -&gt; 对比度</li>
+</ol>
+<h2 id="调节饱和度">调节饱和度</h2><p>饱和度就是颜色的鲜艳程度，不同颜色的最大饱和度不一样。</p>
+<ol>
+<li>复制图层 -&gt; 选择 图像 -&gt; 调整 -&gt; 饱和度<br>值得说明的是：自然饱和度  就是调整饱和度过低的像素，不会让色块变白爆掉。</li>
+</ol>
 
         
         
@@ -426,64 +541,6 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/04/20/hello-world/" title="Hexo Quick Start" itemprop="url">Hexo Quick Start</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="jxc" target="_blank" itemprop="author">jxc</a>
-		
-  <p class="article-time">
-    <time datetime="2016-04-19T17:20:50.000Z" itemprop="datePublished"> Published 2016-04-20</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
       <a href="/2015/10/28/thinking/" title="thinking" itemprop="url">thinking</a>
   </h1>
   <p class="article-author">By
@@ -587,59 +644,9 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/10/27/python-module/" title="python module" itemprop="url">python module</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="jxc" target="_blank" itemprop="author">jxc</a>
-		
-  <p class="article-time">
-    <time datetime="2015-10-27T11:21:36.000Z" itemprop="datePublished"> Published 2015-10-27</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <div class="container-fluid"><br><p>impacket <a href="https://github.com/coresecurity/impacket" target="_blank" rel="external">github</a></p><br><p> 命令行基本工具 net-tool , tcpdump, nmap </p><br><br><p>netstat, ss, traceroute, logging </p><br><br><p>python module: nfqueue(netfilterqueue)</p><p><br><br></p><p>libnfnetlink, netfilter_queue</p><br><br></div>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
   </nav>
 
 </div>
@@ -664,11 +671,11 @@
 			
 		
 			
-				<li><a href="/tags/PS/" title="PS">PS<sup>1</sup></a></li>
+				<li><a href="/tags/markdown-format/" title="markdown format">markdown format<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/markdown-format/" title="markdown format">markdown format<sup>1</sup></a></li>
+				<li><a href="/tags/PS/" title="PS">PS<sup>1</sup></a></li>
 			
 		
 			

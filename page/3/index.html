@@ -4,24 +4,19 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>chromium 代码 | Jcx&#39;s Blog</title>
+    <title>Jcx&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="jxc">
     
 
     
-    <meta name="description" content="namespace and function                        name          position          function                                      chrome          chrome/browser/ui/browser_commands.cc">
-<meta name="keywords" content="hello">
-<meta property="og:type" content="article">
-<meta property="og:title" content="chromium 代码">
-<meta property="og:url" content="http://yoursite.com/2015/10/27/chromium-code/index.html">
+    <meta property="og:type" content="website">
+<meta property="og:title" content="Jcx's Blog">
+<meta property="og:url" content="http://yoursite.com/page/3/index.html">
 <meta property="og:site_name" content="Jcx's Blog">
-<meta property="og:description" content="namespace and function                        name          position          function                                      chrome          chrome/browser/ui/browser_commands.cc">
-<meta property="og:updated_time" content="2015-10-27T11:21:36.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="chromium 代码">
-<meta name="twitter:description" content="namespace and function                        name          position          function                                      chrome          chrome/browser/ui/browser_commands.cc">
+<meta name="twitter:title" content="Jcx's Blog">
 
     
     <link rel="alternative" href="/atom.xml" title="Jcx&#39;s Blog" type="application/atom+xml">
@@ -75,10 +70,12 @@
 </div>
     </header>
     <div id="container">
-      <div id="main" class="post" itemscope itemprop="blogPost">
-  
-	<article itemprop="articleBody"> 
-		<header class="article-info clearfix">
+      <div id="main">
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
   <h1 itemprop="name">
     
       <a href="/2015/10/27/chromium-code/" title="chromium 代码" itemprop="url">chromium 代码</a>
@@ -92,21 +89,19 @@
     
   </p>
 </header>
-	<div class="article-content">
-		
-		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
-		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"></span></a></li></ol>
-		
-		</div>
-		
-		<h2></h2>
+    <div class="article-content">
+        
+        <h2></h2>
 
 <div class="panel"><br>    <table class="table"><br>      <caption>namespace and function</caption><br>      <thead><br>        <tr><br>          <th>name</th><br>          <th>position</th><br>          <th>function</th><br>        </tr><br>      </thead><br>      <tbody><br>        <tr><br>          <th scope="row">chrome</th><br>          <td>chrome/browser/ui/browser_commands.cc</td><br>          <td></td><br>        </tr><br>        <tr><br>          <th scope="row">content</th><br>          <td>???</td><br>          <td>Thornton</td><br>        </tr><br>        <tr><br>          <th scope="row">net</th><br>          <td>net/</td><br>          <td>url_request 是关于http(s)的结构</td><br>        </tr><br>        <tr><br>          <th scope="row">prerender</th><br>          <td>chrome/browser/prerender</td><br>          <td>prerender的预先加载</td><br>        </tr><br>      </tbody><br>    </table><br><br>    <table class="table"><br>      <caption>class and it’s function</caption><br>      <thead><br>        <tr><br>          <th>name</th><br>          <th>position</th><br>          <th>function</th><br>        </tr><br>      </thead><br>      <tbody><br>        <tr><br>          <th scope="row">CookieMonster</th><br>          <td>net/cookies/cookie_monster.[cc|h]</td><br>          <td></td><br>        </tr><br>      </tbody><br>    </table><br><!-- class --><br>    <table class="table"><br>      <caption>class and function</caption><br>      <thead><br>        <tr><br>          <th>name</th><br>          <th>position</th><br>          <th>function</th><br>        </tr><br>      </thead><br>      <tbody><br>        <tr><br>          <th scope="row">browser</th><br>          <td>chrome/browser/ui/browser.h</td><br>          <td>virtual class as base class</td><br>        </tr><br>        <tr><br>            <th scope="row">WebContents</th><br>            <td>content/public/browser/web_contents.h</td><br>            <td>virtual class as base class</td><br>        </tr><br>      </tbody><br>    </table><br><br>    <table class="table"><br>      <caption>class and it’s function</caption><br>      <thead><br>        <tr><br>          <th>name</th><br>          <th>position</th><br>          <th>function</th><br>        </tr><br>      </thead><br>      <tbody><br>        <tr><br>          <th scope="row">CookieMonster</th><br>          <td>net/cookies/cookie_monster.[cc|h]</td><br>          <td></td><br>        </tr><br>      </tbody><br>    </table><br><br>    <div class="col-sm-12"><br><br>    <p>    chrome main class and namespace is in ./chrome/brower/ui/brower.h    </p><br>    <p>OpenEmpty<br>    </p><p>从OpenURL() 开始=&gt; chrome::Navigate() =&gt; chrome::LoadURLInContents() =&gt; content:: LoadURLWithParams() =&gt; LoadEntry() =&gt; class NavigationControllerDelegate<br>    </p><br>    <p>相关的文件有</p><br>    <p><br>    chrome/browser/ui/browser_navigator.cc(h)<br>    </p><br>    <p><br>    content/browser/Web_Contents<br>    </p><br>    <p><br>    content/browser/frame_host/navigation_controller_impl.cc(h)<br>    </p><br><br>    <div class="col-sm-12"><br>        chrome<br>    </div><br>    </div><br></div>
-  
-	</div>
-		<footer class="article-footer clearfix">
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
 <div class="article-catetags">
 
 
@@ -119,51 +114,28 @@
 
 
 
-	<div class="article-share" id="share">
-	
-	  <div data-url="http://yoursite.com/2015/10/27/chromium-code/" data-title="chromium 代码 | Jcx&#39;s Blog" data-tsina="null" class="share clearfix">
-	  </div>
-	
-	</div>
 
+<div class="comments-count">
+	
+</div>
 
 </footer>
 
-   	       
-	</article>
-	
-<nav class="article-nav clearfix">
- 
- <div class="prev" >
- <a href="/2015/10/27/web-security/" title="web security">
-  <strong>上一篇：</strong><br/>
-  <span>
-  web security</span>
-</a>
+
+    </article>
+
+
+
+
+
+
+
+  <nav id="page-nav" class="clearfix">
+    <a class="extend prev" rel="prev" href="/page/2/"><span></span>Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
+
 </div>
-
-
-<div class="next">
-<a href="/2015/10/27/python-crack/"  title="python 破解">
- <strong>下一篇：</strong><br/> 
- <span>python 破解
-</span>
-</a>
-</div>
-
-</nav>
-
-	
-
-</div>  
       <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
-
-  <div id="toc" class="toc-aside">
-  <strong class="toc-title">Contents</strong>
- 
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"></span></a></li></ol>
- 
-  </div>
 
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
@@ -317,89 +289,12 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
-      
-      $('#toc.toc-aside').css('display', 'none');
         
     }
   });
 });
 </script>
 
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var ai = $('.article-content>iframe'),
-      ae = $('.article-content>embed'),
-      t  = $('#toc'),
-      ta = $('#toc.toc-aside'),
-      o  = $('.openaside'),
-      c  = $('.closeaside');
-  if(ai.length>0){
-    ai.wrap('<div class="video-container" />');
-  };
-  if(ae.length>0){
-   ae.wrap('<div class="video-container" />');
-  };
-  c.click(function(){
-    ta.css('display', 'block').addClass('fadeIn');
-  });
-  o.click(function(){
-    ta.css('display', 'none');
-  });
-  $(window).scroll(function(){
-    ta.css("top",Math.max(140,320-$(this).scrollTop()));
-  });
-});
-</script>
-
-
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var $this = $('.share'),
-      url = $this.attr('data-url'),
-      encodedUrl = encodeURIComponent(url),
-      title = $this.attr('data-title'),
-      tsina = $this.attr('data-tsina'),
-      description = $this.attr('description');
-  var html = [
-  '<div class="hoverqrcode clearfix"></div>',
-  '<a class="overlay" id="qrcode"></a>',
-  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
-  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
-  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
-  '<span title="Share to"></span>'
-  ].join('');
-  $this.append(html);
-
-  $('.hoverqrcode').hide();
-
-  var myWidth = 0;
-  function updatehoverqrcode(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-    var qrsize = myWidth > 1024 ? 200:100;
-    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
-    var p = $('.article-share-qrcode').position();
-    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
-                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
-                          .qrcode(options);
-  };
-  $(window).resize(function(){
-    $('.hoverqrcode').hide();
-  });
-  $('.article-share-qrcode').click(function(){
-    updatehoverqrcode();
-    $('.hoverqrcode').toggle();
-  });
-  $('.article-share-qrcode').hover(function(){}, function(){
-      $('.hoverqrcode').hide();
-  });
-});   
-</script>
 
 
 
@@ -465,4 +360,4 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 <!-- Tiny_search End -->
 
   </body>
-</html>
+ </html>
