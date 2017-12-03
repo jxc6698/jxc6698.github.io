@@ -4,24 +4,24 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Jcx&#39;s Blog</title>
+    <title>golang runtime 包 | Jcx&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="jxc">
     
 
     
-    <meta name="description" content="title: golang reflectdate: 2015-10-27 16:54:40 tags: [golang]关于golang 的reflect 和 structTag  1234567891011121314151617181920# 例子：获取tag的值package mainimport (	&quot;fmt&quot;	&quot;reflect&quot;)func main() &amp;#123;	type S st">
-<meta name="keywords">
+    <meta name="description" content="关于golang runtime 包中功能设计进程数量1234# 为了并行，设置和cpu数量一样多的线程func init() &amp;#123;    runtime.GOMAXPROCS(runtime.NumCPU())&amp;#125;">
+<meta name="keywords" content="Golang">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Jcx's Blog">
-<meta property="og:url" content="http://yoursite.com/2017/04/19/go-reflect/index.html">
+<meta property="og:title" content="golang runtime 包">
+<meta property="og:url" content="http://yoursite.com/2015/10/27/go-runtime/index.html">
 <meta property="og:site_name" content="Jcx's Blog">
-<meta property="og:description" content="title: golang reflectdate: 2015-10-27 16:54:40 tags: [golang]关于golang 的reflect 和 structTag  1234567891011121314151617181920# 例子：获取tag的值package mainimport (	&quot;fmt&quot;	&quot;reflect&quot;)func main() &amp;#123;	type S st">
-<meta property="og:updated_time" content="2017-12-03T13:39:56.000Z">
+<meta property="og:description" content="关于golang runtime 包中功能设计进程数量1234# 为了并行，设置和cpu数量一样多的线程func init() &amp;#123;    runtime.GOMAXPROCS(runtime.NumCPU())&amp;#125;">
+<meta property="og:updated_time" content="2017-12-03T15:41:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Jcx's Blog">
-<meta name="twitter:description" content="title: golang reflectdate: 2015-10-27 16:54:40 tags: [golang]关于golang 的reflect 和 structTag  1234567891011121314151617181920# 例子：获取tag的值package mainimport (	&quot;fmt&quot;	&quot;reflect&quot;)func main() &amp;#123;	type S st">
+<meta name="twitter:title" content="golang runtime 包">
+<meta name="twitter:description" content="关于golang runtime 包中功能设计进程数量1234# 为了并行，设置和cpu数量一样多的线程func init() &amp;#123;    runtime.GOMAXPROCS(runtime.NumCPU())&amp;#125;">
 
     
     <link rel="alternative" href="/atom.xml" title="Jcx&#39;s Blog" type="application/atom+xml">
@@ -81,14 +81,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/04/19/go-reflect/" title="" itemprop="url"></a>
+      <a href="/2015/10/27/go-runtime/" title="golang runtime 包" itemprop="url">golang runtime 包</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="jxc" target="_blank" itemprop="author">jxc</a>
 		
   <p class="article-time">
-    <time datetime="2017-04-18T17:04:16.000Z" itemprop="datePublished"> Published 2017-04-19</time>
+    <time datetime="2015-10-27T08:54:40.000Z" itemprop="datePublished"> Published 2015-10-27</time>
     
   </p>
 </header>
@@ -97,16 +97,11 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#tags:_[golang]"><span class="toc-number">1.</span> <span class="toc-text">tags: [golang]</span></a></li></ol>
+			
 		
 		</div>
 		
-		<p>title: golang reflect<br>date: 2015-10-27 16:54:40</p>
-<h2 id="tags:_[golang]">tags: [golang]</h2><p>关于golang 的reflect 和 structTag</p><br><p></p>
-
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"># 例子：获取tag的值</div><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> (</div><div class="line">	<span class="string">"fmt"</span></div><div class="line">	<span class="string">"reflect"</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">	<span class="keyword">type</span> S <span class="keyword">struct</span> &#123;</div><div class="line">		F <span class="keyword">string</span> <span class="string">`species:"gopher" color:"blue"`</span></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	s := S&#123;&#125;</div><div class="line">	st := reflect.TypeOf(s)</div><div class="line">	field := st.Field(<span class="number">0</span>)</div><div class="line">	fmt.Println(field.Tag.Get(<span class="string">"color"</span>), field.Tag.Get(<span class="string">"species"</span>))</div><div class="line"></div><div class="line">	<span class="keyword">return</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<a id="more"></a>
-<p>reflect得到了　type Type</p><br><p>从type Type 中Field(index) 得到第index的域对应的StructTag</p><br><p>StructTag.Get(key) 得到对应的 value</p>
+		<p>关于golang runtime 包中功能</p><br><p>设计进程数量</p><br><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># 为了并行，设置和cpu数量一样多的线程</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">init</span><span class="params">()</span></span> &#123;</div><div class="line">    runtime.GOMAXPROCS(runtime.NumCPU())</div><div class="line">&#125;</div></pre></td></tr></table></figure><br><br><p></p>
 
 
   
@@ -115,13 +110,18 @@
 <div class="article-catetags">
 
 
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Golang/">Golang</a>
+  </div>
+
 </div>
 
 
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2017/04/19/go-reflect/" data-title="Jcx&#39;s Blog" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yoursite.com/2015/10/27/go-runtime/" data-title="golang runtime 包 | Jcx&#39;s Blog" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -135,18 +135,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2017/04/18/hexo/" title="Hexo Quick Start">
+ <a href="/2015/10/27/go-reflect/" title="golang reflect">
   <strong>上一篇：</strong><br/>
   <span>
-  Hexo Quick Start</span>
+  golang reflect</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2017/04/19/go-runtime/"  title="">
+<a href="/2015/10/27/go-定时器/"  title="golang timer">
  <strong>下一篇：</strong><br/> 
- <span>(no title)
+ <span>golang timer
 </span>
 </a>
 </div>
@@ -161,7 +161,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#tags:_[golang]"><span class="toc-number">1.</span> <span class="toc-text">tags: [golang]</span></a></li></ol>
+ 
  
   </div>
 
@@ -184,15 +184,19 @@
 			
 		
 			
-				<li><a href="/tags/Golang/" title="Golang">Golang<sup>1</sup></a></li>
+				<li><a href="/tags/Golang/" title="Golang">Golang<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/markdown-format/" title="markdown format">markdown format<sup>1</sup></a></li>
+				<li><a href="/tags/golang/" title="golang">golang<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/PS/" title="PS">PS<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/markdown-format/" title="markdown format">markdown format<sup>1</sup></a></li>
 			
 		
 			

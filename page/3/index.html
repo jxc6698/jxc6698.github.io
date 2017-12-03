@@ -78,7 +78,7 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/10/27/chromium-code/" title="chromium 代码" itemprop="url">chromium 代码</a>
+      <a href="/2015/10/27/ajax/" title="ajax" itemprop="url">ajax</a>
   </h1>
   <p class="article-author">By
        
@@ -91,9 +91,11 @@
 </header>
     <div class="article-content">
         
-        <h2></h2>
+        
+<h2>关于ajax</h2>
+<p>最近在用dropzone和jquery-File-Uploader这连个插件，需要异步发送文件，为了确保使用正确，顺道看了下这两个插件的代码</p>
 
-<div class="panel"><br>    <table class="table"><br>      <caption>namespace and function</caption><br>      <thead><br>        <tr><br>          <th>name</th><br>          <th>position</th><br>          <th>function</th><br>        </tr><br>      </thead><br>      <tbody><br>        <tr><br>          <th scope="row">chrome</th><br>          <td>chrome/browser/ui/browser_commands.cc</td><br>          <td></td><br>        </tr><br>        <tr><br>          <th scope="row">content</th><br>          <td>???</td><br>          <td>Thornton</td><br>        </tr><br>        <tr><br>          <th scope="row">net</th><br>          <td>net/</td><br>          <td>url_request 是关于http(s)的结构</td><br>        </tr><br>        <tr><br>          <th scope="row">prerender</th><br>          <td>chrome/browser/prerender</td><br>          <td>prerender的预先加载</td><br>        </tr><br>      </tbody><br>    </table><br><br>    <table class="table"><br>      <caption>class and it’s function</caption><br>      <thead><br>        <tr><br>          <th>name</th><br>          <th>position</th><br>          <th>function</th><br>        </tr><br>      </thead><br>      <tbody><br>        <tr><br>          <th scope="row">CookieMonster</th><br>          <td>net/cookies/cookie_monster.[cc|h]</td><br>          <td></td><br>        </tr><br>      </tbody><br>    </table><br><!-- class --><br>    <table class="table"><br>      <caption>class and function</caption><br>      <thead><br>        <tr><br>          <th>name</th><br>          <th>position</th><br>          <th>function</th><br>        </tr><br>      </thead><br>      <tbody><br>        <tr><br>          <th scope="row">browser</th><br>          <td>chrome/browser/ui/browser.h</td><br>          <td>virtual class as base class</td><br>        </tr><br>        <tr><br>            <th scope="row">WebContents</th><br>            <td>content/public/browser/web_contents.h</td><br>            <td>virtual class as base class</td><br>        </tr><br>      </tbody><br>    </table><br><br>    <table class="table"><br>      <caption>class and it’s function</caption><br>      <thead><br>        <tr><br>          <th>name</th><br>          <th>position</th><br>          <th>function</th><br>        </tr><br>      </thead><br>      <tbody><br>        <tr><br>          <th scope="row">CookieMonster</th><br>          <td>net/cookies/cookie_monster.[cc|h]</td><br>          <td></td><br>        </tr><br>      </tbody><br>    </table><br><br>    <div class="col-sm-12"><br><br>    <p>    chrome main class and namespace is in ./chrome/brower/ui/brower.h    </p><br>    <p>OpenEmpty<br>    </p><p>从OpenURL() 开始=&gt; chrome::Navigate() =&gt; chrome::LoadURLInContents() =&gt; content:: LoadURLWithParams() =&gt; LoadEntry() =&gt; class NavigationControllerDelegate<br>    </p><br>    <p>相关的文件有</p><br>    <p><br>    chrome/browser/ui/browser_navigator.cc(h)<br>    </p><br>    <p><br>    content/browser/Web_Contents<br>    </p><br>    <p><br>    content/browser/frame_host/navigation_controller_impl.cc(h)<br>    </p><br><br>    <div class="col-sm-12"><br>        chrome<br>    </div><br>    </div><br></div>
+<h2>关于jQuery.ajax的使用和参数</h2>
 
         
         
@@ -156,15 +158,19 @@
 			
 		
 			
-				<li><a href="/tags/Golang/" title="Golang">Golang<sup>1</sup></a></li>
+				<li><a href="/tags/Golang/" title="Golang">Golang<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/markdown-format/" title="markdown format">markdown format<sup>1</sup></a></li>
+				<li><a href="/tags/golang/" title="golang">golang<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/PS/" title="PS">PS<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/markdown-format/" title="markdown format">markdown format<sup>1</sup></a></li>
 			
 		
 			

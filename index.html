@@ -78,113 +78,6 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/04/19/go-reflect/" title="" itemprop="url"></a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="jxc" target="_blank" itemprop="author">jxc</a>
-		
-  <p class="article-time">
-    <time datetime="2017-04-18T17:04:16.000Z" itemprop="datePublished"> Published 2017-04-19</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>title: golang reflect<br>date: 2015-10-27 16:54:40</p>
-<h2 id="tags:_[golang]">tags: [golang]</h2><p>关于golang 的reflect 和 structTag</p><br><p></p>
-
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"># 例子：获取tag的值</div><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> (</div><div class="line">	<span class="string">"fmt"</span></div><div class="line">	<span class="string">"reflect"</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">	<span class="keyword">type</span> S <span class="keyword">struct</span> &#123;</div><div class="line">		F <span class="keyword">string</span> <span class="string">`species:"gopher" color:"blue"`</span></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	s := S&#123;&#125;</div><div class="line">	st := reflect.TypeOf(s)</div><div class="line">	field := st.Field(<span class="number">0</span>)</div><div class="line">	fmt.Println(field.Tag.Get(<span class="string">"color"</span>), field.Tag.Get(<span class="string">"species"</span>))</div><div class="line"></div><div class="line">	<span class="keyword">return</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2017/04/19/go-reflect/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2017/04/19/go-runtime/" title="" itemprop="url"></a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="jxc" target="_blank" itemprop="author">jxc</a>
-		
-  <p class="article-time">
-    <time datetime="2017-04-18T17:04:16.000Z" itemprop="datePublished"> Published 2017-04-19</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>title: golang runtime 包<br>date: 2015-10-27 16:54:40</p>
-<h2 id="tags:_[golang]">tags: [golang]</h2><p>关于golang runtime 包中功能</p><br><p>设计进程数量</p><br><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># 为了并行，设置和cpu数量一样多的线程</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">init</span><span class="params">()</span></span> &#123;</div><div class="line">    runtime.GOMAXPROCS(runtime.NumCPU())</div><div class="line">&#125;</div></pre></td></tr></table></figure><br><br><p></p>
-
-
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
       <a href="/2017/04/18/hexo/" title="Hexo Quick Start" itemprop="url">Hexo Quick Start</a>
   </h1>
   <p class="article-author">By
@@ -637,6 +530,269 @@
 
 
 
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/10/27/go-定时器/" title="golang timer" itemprop="url">golang timer</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="jxc" target="_blank" itemprop="author">jxc</a>
+		
+  <p class="article-time">
+    <time datetime="2015-10-27T08:54:40.000Z" itemprop="datePublished"> Published 2015-10-27</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>关于golang 的定时器主要设计time这个包</p><br><p>我以前使用时一直都是这么用的</p><br><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"># 很土的用法</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">test3</span><span class="params">()</span></span> &#123;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> &#123;</div><div class="line">        <span class="keyword">select</span> &#123;</div><div class="line">            <span class="keyword">case</span> &lt;- ch:</div><div class="line">            <span class="comment">/* case 1 */</span></div><div class="line">            <span class="keyword">case</span> &lt;- time.After(<span class="number">2</span> * time.Second):</div><div class="line">            <span class="comment">/* case 2 */</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><br><p>这样子写很不好，主要是select在有多个条件满足时，会随机选一个，但是当channel中一直有数据时，time.After()却一直得不到执行，当前我还不知道什么原因</p>
+
+<p></p>
+
+<p>使用time.NewTicker()却可以避免这个问题</p><br><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"># 使用time.NewTicker</div><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">test3</span><span class="params">()</span></span> &#123;</div><div class="line">    ticker := time.NewTicker(<span class="number">2</span> * time.Second)</div><div class="line">    <span class="keyword">defer</span> ticker.Stop()</div><div class="line">    ch := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>, <span class="number">10</span>)</div><div class="line">    <span class="keyword">go</span> add(ch)</div><div class="line">    <span class="keyword">for</span> &#123;</div><div class="line">        <span class="keyword">select</span> &#123;</div><div class="line">            <span class="keyword">case</span> &lt;- ch:</div><div class="line">                <span class="comment">/* case 1 */</span></div><div class="line">            <span class="keyword">case</span> &lt;- ticker.C:</div><div class="line">                <span class="comment">/* case 2 */</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><br><br><p></p>
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"># 使用独立的两个<span class="keyword">switch</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">test4</span><span class="params">()</span></span> &#123;</div><div class="line">    ticker := time.NewTicker(<span class="number">2</span> * time.Second)</div><div class="line">    <span class="keyword">defer</span> ticker.Stop()</div><div class="line">    ch := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>, <span class="number">10</span>)</div><div class="line">    <span class="keyword">go</span> add(ch)</div><div class="line">    <span class="keyword">for</span> &#123;</div><div class="line">        <span class="keyword">select</span> &#123;</div><div class="line">            <span class="keyword">case</span> &lt;- ch:</div><div class="line">            	<span class="comment">/* case 1 */</span></div><div class="line">            <span class="keyword">default</span>: <span class="comment">// forbid block</span></div><div class="line">        &#125;</div><div class="line">        <span class="keyword">select</span> &#123;</div><div class="line">            <span class="keyword">case</span> &lt;- ticker.C:</div><div class="line">            	<span class="comment">/* case 2 */</span></div><div class="line">                fmt.Println(<span class="string">"timeout"</span>)</div><div class="line">                <span class="keyword">return</span></div><div class="line">            <span class="keyword">default</span>: <span class="comment">// forbid block</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Golang/">Golang</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/10/27/docker-学习与使用/" title="docker 学习与使用" itemprop="url">docker 学习与使用</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="jxc" target="_blank" itemprop="author">jxc</a>
+		
+  <p class="article-time">
+    <time datetime="2015-10-27T08:54:40.000Z" itemprop="datePublished"> Published 2015-10-27</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p></p><h2>docker 使用</h2><p></p>
+<div class="container-fluid"><br>    <div class="row"><br>    <p>起因是我打算玩一玩kali linux,身边又没有合适的机器,又没钱买一加,所以打算用docker 来运行</p><br>    </div>
+
+<pre><code><span class="xml"><span class="comment">&lt;!-- basic command --&gt;</span>
+<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"row"</span>&gt;</span>
+<span class="tag">&lt;<span class="title">p</span>&gt;</span>先要搞清楚docker里面镜像(images),容器(container),数据卷(),链接()<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+<span class="tag">&lt;<span class="title">p</span>&gt;</span>不多说,先看docker的基本用法 docker --help 一下,用一个我学一个(好吧,这其实是个翻译工作)<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+<span class="tag">&lt;<span class="title">p</span>&gt;</span>对容器的操作（rm、stop、start、kill、logs、diff、top、cp、restart、attach）<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+<span class="tag">&lt;<span class="title">p</span>&gt;</span>保存对容器的修改（commit）<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+<span class="tag">&lt;<span class="title">p</span>&gt;</span>查看容器（ps）<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+<span class="tag">&lt;<span class="title">p</span>&gt;</span>启动容器（run）<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+<span class="tag">&lt;<span class="title">p</span>&gt;</span>对image的操作（search、pull、images、rmi、history）<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+<span class="tag">&lt;<span class="title">p</span>&gt;</span>查看docker信息（version、info）<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+<span class="tag">&lt;<span class="title">p</span>&gt;</span>保存和加载镜像（save、load）<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+<span class="tag">&lt;<span class="title">p</span>&gt;</span>登录registry server（login）<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+<span class="tag">&lt;<span class="title">p</span>&gt;</span>发布image（push）<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+<span class="tag">&lt;<span class="title">p</span>&gt;</span>根据Dockerfile 构建出一个容器<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+<span class="tag">&lt;<span class="title">table</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">thead</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">tr</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">th</span>&gt;</span>name<span class="tag">&lt;/<span class="title">th</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">th</span>&gt;</span>position<span class="tag">&lt;/<span class="title">th</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">tr</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">thead</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">tbody</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">tr</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">th</span> <span class="attribute">scope</span>=<span class="value">"row"</span>&gt;</span>docker images<span class="tag">&lt;/<span class="title">th</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">td</span>&gt;</span>查看本地已经镜像<span class="tag">&lt;/<span class="title">td</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">tr</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">tr</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">th</span> <span class="attribute">scope</span>=<span class="value">"row"</span>&gt;</span>docker pull<span class="tag">&lt;/<span class="title">th</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">td</span>&gt;</span>从公共registry上下载镜像<span class="tag">&lt;/<span class="title">td</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">tr</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">tr</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">th</span> <span class="attribute">scope</span>=<span class="value">"row"</span>&gt;</span>docker run<span class="tag">&lt;/<span class="title">th</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">td</span>&gt;</span>运行 例子: docker run --rm ti ubuntu /bin/bash<span class="tag">&lt;<span class="title">p</span>&gt;</span>这里会创建新的container<span class="tag">&lt;/<span class="title">p</span>&gt;</span><span class="tag">&lt;/<span class="title">td</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">tr</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">tr</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">th</span> <span class="attribute">scope</span>=<span class="value">"row"</span>&gt;</span>docker ps<span class="tag">&lt;/<span class="title">th</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">td</span>&gt;</span>列出已经运行的容器<span class="tag">&lt;/<span class="title">td</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">tr</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">tr</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">th</span> <span class="attribute">scope</span>=<span class="value">"row"</span>&gt;</span>docker exec<span class="tag">&lt;/<span class="title">th</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">td</span>&gt;</span><span class="tag">&lt;/<span class="title">td</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">tr</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">tr</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">th</span> <span class="attribute">scope</span>=<span class="value">"row"</span>&gt;</span>docker commit<span class="tag">&lt;/<span class="title">th</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">td</span>&gt;</span>docker commit  0c4d0d394e7e ubuntu:new_change <span class="tag">&lt;<span class="title">p</span>&gt;</span>把container保存成为image<span class="tag">&lt;/<span class="title">p</span>&gt;</span><span class="tag">&lt;/<span class="title">td</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">tr</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">tr</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">th</span> <span class="attribute">scope</span>=<span class="value">"row"</span>&gt;</span>docker attach<span class="tag">&lt;/<span class="title">th</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">td</span>&gt;</span><span class="tag">&lt;<span class="title">p</span>&gt;</span>Ctrl +p Ctrl+q 可以detach docker<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">p</span>&gt;</span>docker attach be5208725b30<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+        <span class="tag">&lt;/<span class="title">td</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">tr</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">tr</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">th</span> <span class="attribute">scope</span>=<span class="value">"row"</span>&gt;</span>docker search<span class="tag">&lt;/<span class="title">th</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">td</span>&gt;</span><span class="tag">&lt;<span class="title">p</span>&gt;</span>搜索image<span class="tag">&lt;/<span class="title">p</span>&gt;</span><span class="tag">&lt;/<span class="title">td</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">tr</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">tr</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">th</span> <span class="attribute">scope</span>=<span class="value">"row"</span>&gt;</span>docker info<span class="tag">&lt;/<span class="title">th</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">td</span>&gt;</span>显示基本信息<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">tr</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">tr</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">th</span> <span class="attribute">scope</span>=<span class="value">"row"</span>&gt;</span>docker push<span class="tag">&lt;/<span class="title">th</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">td</span>&gt;</span>上传image ------(未使用过)<span class="tag">&lt;/<span class="title">td</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">tr</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">tr</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">th</span> <span class="attribute">scope</span>=<span class="value">"row"</span>&gt;</span>docker save/load<span class="tag">&lt;/<span class="title">th</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">td</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">p</span>&gt;</span># 保存镜像到一个tar包; -o, --output="" Write to an file<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">p</span>&gt;</span>$docker save image_name -o file_path<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">p</span>&gt;</span># 加载一个tar包格式的镜像; -i, --input="" Read from a tar archive file<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">p</span>&gt;</span>$docker load -i file_path<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">p</span>&gt;</span># 机器a<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">p</span>&gt;</span>$docker save image_name &gt; /home/save.tar<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">p</span>&gt;</span># 使用scp将save.tar拷到机器b上，然后：<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">p</span>&gt;</span>$docker load <span class="tag">&lt; /<span class="attribute">home</span>/<span class="attribute">save.tar</span>&lt;/<span class="attribute">p</span>&gt;</span>
+        <span class="tag">&lt;/<span class="title">td</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">tr</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">tr</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">th</span> <span class="attribute">scope</span>=<span class="value">"row"</span>&gt;</span>docker login<span class="tag">&lt;/<span class="title">th</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">td</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">p</span>&gt;</span># 登陆registry server; -e, --email="" Email; -p, --password="" Password; -u, --username="" Username<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+        <span class="tag">&lt;/<span class="title">td</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">tr</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">tr</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">th</span> <span class="attribute">scope</span>=<span class="value">"row"</span>&gt;</span>docker build<span class="tag">&lt;/<span class="title">th</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">td</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">p</span>&gt;</span>没有用过<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">p</span>&gt;</span>#build
+  --no-cache=false Do not use cache when building the image
+  -q, --quiet=false Suppress the verbose output generated by the containers
+  --rm=true Remove intermediate containers after a successful build
+  -t, --tag="" Repository name (and optionally a tag) to be applied to the resulting image in case of success<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+        <span class="tag">&lt;/<span class="title">td</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">tr</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">tbody</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">table</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+<span class="comment">&lt;!-- end of basic command --&gt;</span>
+
+<span class="tag">&lt;<span class="title">div</span>&gt;</span><span class="tag">&lt;<span class="title">p</span>&gt;</span>一个docker官方学习网站https://www.docker.com/tryit<span class="tag">&lt;/<span class="title">p</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"row"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"span6"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">p</span>&gt;</span>docker 默认的文件路径 /var/lib/docker<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">p</span>&gt;</span>里面的文件夹 containers 创建的所有的容器，repositories-aufs仓库images关系<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">p</span>&gt;</span>如何删除所有的 container<span class="tag">&lt;/<span class="title">p</span>&gt;</span></span>
+</code></pre><p>docker rm <code>docker ps -a | grep Exited | awk &#39;{print $1 }&#39;</code><br>docker rmi <code>docker images -aq</code><br>        </p></div><br>    <p></p>
+<pre><code>&lt;<span class="tag">div</span> class=<span class="string">"row"</span>&gt;
+    &lt;p&gt;在fedora <span class="number">22</span>上面试用了一下docker，发现与ubuntu 有以下区别，/var/run/docker.sock这个文件是属于用户root,组root的，这样就需要每次在运行docker 的时候必须给root权限，所以我修改了/var/run/docker.sock的组&lt;/p&gt;
+    &lt;p&gt;docker<span class="class">.sock</span> 是在守护进程启动的时候穿件的，所以要在fedora每次启动时都要修改&lt;/p&gt;
+     highlight bash
+    sudo touch /etc/rc.d/rc<span class="class">.local</span>
+    sudo vim /etc/rc.d/rc<span class="class">.local</span> 添加 sudo systemctl start docker 
+    sudo chmod a+x /etc/rc.d/rc<span class="class">.local</span>
+
+    sudo vim /usr/lib/systemd/system/rc-local<span class="class">.service</span>
+    添加
+        [Install]
+        WantedBy=multi-user<span class="class">.target</span>
+    sudo systemctl enable rc-local<span class="class">.service</span>
+
+    sudo chgrp dockerroot /var/run/docker<span class="class">.sock</span>
+    &lt;p&gt;这里用dockerroot (ubuntu 是docker)是用<span class="function"><span class="title">dnf</span><span class="params">(yum)</span></span>安装后多出的用户组&lt;/p&gt;
+    &lt;p&gt;fedora 和ubuntu 的一些区别，比如 全好xx.h，那么需要安装的名字为 libxx<span class="class">.dev</span>, libxx<span class="class">.devel</span>, python-xx, xx-dev, xx-devel, python-xx-&lt;/p&gt;
+&lt;/div&gt;
+
+
+&lt;!-- usage <span class="number">1</span> --&gt;
+&lt;<span class="tag">div</span> class=<span class="string">"row"</span>&gt;
+</code></pre><p>2.1 打开docker bash<br>    docker run xx:latest -t -i /bin/bash</p>
+<pre><code>apt-get install openssh-server <span class="comment">#安装ssh</span>
+<span class="comment">#需要修改/etc/sshd/sshd_config文件中内容</span>
+PermitRootLogin <span class="literal">yes</span>  
+UsePAM <span class="literal">no</span> 
+</code></pre><p>2.2 启动ssh，容器以后台方式运行</p>
+<pre><code>docker <span class="command">run</span> -d -p <span class="number">50001</span>:<span class="number">22</span> &lt;容器<span class="property">id</span>&gt; /usr/sbin/sshd-D  
+<span class="comment">#容器id可通过 docker ps-a查看，最上面的为最新的。 </span>
+</code></pre><p>2.3 通过ssh连接到容器安装软件</p>
+<pre><code>ssh root@<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>-p <span class="number">50001</span>  
+<span class="preprocessor">#连上后想装什么就装什么，可使用exit退出容器，但后台还会运行。 </span>
+</code></pre><p>2.4 服务安装完成后，停止容器。</p>
+<pre><code>docker stop &lt;容器<span class="property">id</span>&gt; <span class="comment">#停止运行的容器 </span>
+</code></pre><p>2.5 把容器提交生成最新的镜像</p>
+<pre><code>docker commit &lt;容器<span class="property">id</span>&gt; debian02 <span class="comment">#把这个容器提交生成新的debian02镜像(</span>
+&lt;/<span class="keyword">div</span>&gt;
+</code></pre><p></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/hello/">hello</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
 
   <nav id="page-nav" class="clearfix">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
@@ -664,15 +820,19 @@
 			
 		
 			
-				<li><a href="/tags/Golang/" title="Golang">Golang<sup>1</sup></a></li>
+				<li><a href="/tags/Golang/" title="Golang">Golang<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/markdown-format/" title="markdown format">markdown format<sup>1</sup></a></li>
+				<li><a href="/tags/golang/" title="golang">golang<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/PS/" title="PS">PS<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/markdown-format/" title="markdown format">markdown format<sup>1</sup></a></li>
 			
 		
 			
